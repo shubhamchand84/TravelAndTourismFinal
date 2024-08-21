@@ -1,23 +1,23 @@
 import React from "react";
-import Banner from "../components/Banner/Banner";
-import AdvanceSearch from "../components/AdvanceSearch/AdvanceSearch";
-import Features from "../components/Features/Features";
+import Banner from "../../components/Banner/Banner";
+import AdvanceSearch from "../../components/AdvanceSearch/AdvanceSearch";
+import Features from "../../components/Features/Features";
 import { Container, Row, Col, Card } from "react-bootstrap";
 
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
-import "./home.css";
+import "../Home/home.css";
 
-import tour4 from "../assets/images/tour/Tokyo.png";
-import tour5 from "../assets/images/tour/bali-1.png";
-import tour6 from "../assets/images/tour/bangkok.png";
-import tour7 from "../assets/images/tour/cancun.png";
-import tour8 from "../assets/images/tour/nah-trang.png";
-import tour9 from "../assets/images/tour/phuket.png";
-import PopularPlace from "../components/PopularPlace/PopularPlace";
-import Gallery from "../components/Gallery/Gallery";
+import tour4 from "../../assets/images/tour/Tokyo.png";
+import tour5 from "../../assets/images/tour/bali-1.png";
+import tour6 from "../../assets/images/tour/bangkok.png";
+import tour7 from "../../assets/images/tour/cancun.png";
+import tour8 from "../../assets/images/tour/nah-trang.png";
+import tour9 from "../../assets/images/tour/phuket.png";
+import PopularPlace from "../../components/PopularPlace/PopularPlace";
+import Gallery from "../../components/Gallery/Gallery";
 
 const Home = () => {
   var settings = {
