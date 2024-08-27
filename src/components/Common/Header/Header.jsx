@@ -33,6 +33,8 @@ const Header = () => {
   }
 
 
+ 
+
   return (
     
     <header className="header-section">
@@ -62,13 +64,13 @@ const Header = () => {
 
               <Offcanvas.Body>
                 <Nav className="justify-content-end flex-grow-1 pe-3">
-                  <NavLink className="nav-link" to="/">
+                  <NavLink className="nav-link" to="/" >
                     Home
                   </NavLink>
-                  <NavLink className="nav-link" to="/">
+                  <NavLink className="nav-link" to="/" >
                     ABOUT US
                   </NavLink>
-                  <NavLink className="nav-link" to="/">
+                  <NavLink className="nav-link" to="/" >
                     TOURS
                   </NavLink>
 
@@ -76,23 +78,18 @@ const Header = () => {
                     title="DESTINATION"
                     id={`offcanvasNavbarDropdown-expand-lg`}
                   >
-                    <NavDropdown.Item href="#action3">
-                      {" "}
-                      SPAIN TOURS
-                    </NavDropdown.Item>
-                    <NavDropdown.Item href="#action4">
-                      {" "}
-                      ITALY TOURS{" "}
-                    </NavDropdown.Item>
-                    <NavDropdown.Item href="#action4">
-                      {" "}
-                      FRANCE TOURS{" "}
-                    </NavDropdown.Item>
+                   
+                      
+                    <NavLink className="nav-link text-dark" to="/" >
+                    SPAIN TOURS
+                  </NavLink>
+                  
+                   
                   </NavDropdown>
-                  <NavLink className="nav-link" to="/">
+                  <NavLink className="nav-link" to="/" >
                     GALLERY
                   </NavLink>
-                  <NavLink className="nav-link" to="/">
+                  <NavLink className="nav-link" to="/" >
                     CONTACT
                   </NavLink>
                 </Nav>

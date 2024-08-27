@@ -14,7 +14,7 @@
 
   --smallText: 12px;
 
-  --bodyText: 14px;
+  --bodyText: 16px;
   --subTitle: 18px;
   --heading: 26px;
   --fontFamily: "Lato", sans-serif;
@@ -74,4 +74,14 @@ table {
 	padding-left: 0.937rem;
 	padding-right: 0.937rem;
 	max-width: 1200px;
+}
+
+.body-text,p{
+	font-size: var(--bodyText);
+	color: var(--textclr);
+	line-height: 24px;
+}
+
+.font-bold{
+	font-weight: 800 !important;
 }

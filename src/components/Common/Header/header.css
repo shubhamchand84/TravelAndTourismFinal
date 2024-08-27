@@ -8,6 +8,7 @@
   animation: smothScroll 1s forwards;
   background: var(--white);
   z-index: 999;
+  box-shadow: var(--bs-box-shadow-sm) !important;
 }
 @keyframes smothScroll {
   0% {
@@ -46,12 +47,16 @@ header .navbar .navbar-brand a {
 }
 
 header .navbar .offcanvas-body a {
-  font-size: var(--bodyText);
+  font-size: 14px;
   color: var(--white) !important;
   line-height: 150%;
   font-family: var(--fontFamily);
   font-weight: bold;
   text-transform: uppercase;
+}
+
+header .navbar .offcanvas-body .dropdown-menu a {
+  color:black !important
 }
 
 header .navbar .offcanvas-body a:hover {
