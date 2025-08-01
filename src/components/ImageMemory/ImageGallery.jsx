@@ -1,6 +1,7 @@
 import React, { useEffect, useState, useRef } from "react";
 import axios from "axios";
 import io from "socket.io-client";
+import ImageUpload from "./ImageUpload";
 
 const ImageGallery = () => {
   const [mediaItems, setMediaItems] = useState([]);
@@ -31,9 +32,7 @@ const ImageGallery = () => {
     });
 
     return () => {
-      if (socketRef.current) {
-        socketRef.current.disconnect();
-      }
+      if (socketRef.current) socketRef.current.disconnect();
     };
   }, []);
 
@@ -56,8 +55,13 @@ const ImageGallery = () => {
 
   return (
     <div className="container py-5">
-      <h2 className="text-center mb-5 text-primary fw-bold">📁 Media Gallery</h2>
-      <div className="row gy-4">
+      <h2 className="text-center mb-4 text-primary fw-bold">📁 Media Gallery</h2>
+
+      {/* ✅ Upload section included here */}
+      <ImageUpload onUploadSuccess={fetchMedia} />
+
+      {/* Gallery section */}
+      <div className="row gy-4 mt-4">
         {mediaItems.map((item) => (
           <div key={item._id} className="col-md-6">
             <div className="card shadow-sm border-0 h-100">
@@ -66,12 +70,14 @@ const ImageGallery = () => {
                   {item.mediaType === "video" ? (
                     <video src={item.mediaUrl} className="w-100 rounded" controls />
                   ) : (
-                    <img src={item.mediaUrl} alt={item.description || ""} className="img-fluid rounded" />
+                    <img
+                      src={item.mediaUrl}
+                      alt={item.description || ""}
+                      className="img-fluid rounded"
+                    />
                   )}
                 </div>
-                <p className="mb-2">
-                  <strong>Description:</strong> {item.description}
-                </p>
+                <p><strong>Description:</strong> {item.description}</p>
                 <div className="bg-light rounded p-3 mb-3" style={{ maxHeight: "150px", overflowY: "auto" }}>
                   <h6 className="text-muted mb-2">💬 Comments:</h6>
                   {item.comments.length > 0 ? (
