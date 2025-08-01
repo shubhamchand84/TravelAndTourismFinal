@@ -1,19 +1,41 @@
-import { Route, Routes } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
+import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
-import Home from "./pages/Home/Home";
+
 import Header from "./components/Common/Header/Header";
 import Footer from "./components/Common/Footer/Footer";
 
+import Home from "./pages/Home/Home";
+import ImageUpload from "./components/ImageMemory/ImageUpload";
+import ImageGallery from "./components/ImageMemory/ImageGallery";
+
+// Import new pages
+import About from "./pages/About/About";
+import Contact from "./pages/Contact/Contact";
+import Faq from "./pages/Faq/Faq";
+import News from "./pages/News/News";
+import Destination from "./pages/Destination/Destination";
+import TourListings from "./pages/TourListings/TourListings";
 
 function App() {
   return (
     <>
       <Header />
-      <Routes>
-        <Route path="/" element={<Home />} />
-        
+      <div className="container mt-4 mb-4">
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/upload" element={<ImageUpload />} />
+          <Route path="/gallery" element={<ImageGallery />} />
 
-      </Routes>
+          {/* New Routes */}
+          <Route path="/about" element={<About />} />
+          <Route path="/contact" element={<Contact />} />
+          <Route path="/faq" element={<Faq />} />
+          <Route path="/news" element={<News />} />
+          <Route path="/destination" element={<Destination />} />
+          <Route path="/tour-listings" element={<TourListings />} />
+        </Routes>
+      </div>
       <Footer />
     </>
   );
