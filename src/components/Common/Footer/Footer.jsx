@@ -8,11 +8,7 @@ const Footer = () => {
 
   const toggleVisible = () => {
     const scrolled = document.documentElement.scrollTop;
-    if (scrolled > 300) {
-      setVisible(true);
-    } else {
-      setVisible(false);
-    }
+    setVisible(scrolled > 300);
   };
 
   const scrollTop = () => {
@@ -91,10 +87,10 @@ const Footer = () => {
                 <a
                   target="_blank"
                   rel="noreferrer"
-                  href="mailto:rawatcoder@gmail.com"
+                  href="mailto:shubhamchandofficial@gmail.com"
                   className="d-block"
                 >
-                  rawatcoder@gmail.com
+                  shubhamchandofficial@gmail.com
                 </a>
               </div>
 
@@ -103,10 +99,10 @@ const Footer = () => {
                 <a
                   target="_blank"
                   rel="noreferrer"
-                  href="tel:9876543210"
+                  href="tel:+918630129605"
                   className="d-block"
                 >
-                  9876543210
+                  (+91) 8630129605
                 </a>
               </div>
             </Col>
@@ -114,7 +110,7 @@ const Footer = () => {
 
           <Row className="py-2 bdr mt-3">
             <Col className="col copyright">
-              <p className="text-light">© 2024. rawatcoder All rights reserved</p>
+              <p className="text-light">© 2024. Shubham Chand. All rights reserved.</p>
             </Col>
           </Row>
         </Container>
