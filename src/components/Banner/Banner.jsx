@@ -13,15 +13,12 @@ const Banner = () => {
             <img src={sliderImg} className="d-block w-100" alt="First slide" />
             <Carousel.Caption>
               <div className="slider_des">
-                <h5 className="heading">
-                  JOURNEY TO <span>EXPLORE WORLD</span>
-                </h5>
-                <p className="sub_text">
-                  Lorem Ipsum is simply dummy text of the printing and
-                  typesetting industry. Lorem Ipsum has been the industry's
-                  standard dummy text ever since the 1500s,
-                </p>
-              </div>
+              <h5 className="heading">
+  DISCOVER <span>THE WORLD WITH US</span>
+</h5>
+<p className="sub_text">
+  Embark on unforgettable journeys to breathtaking destinations. Whether you're craving adventure, culture, or relaxation — we've got the perfect getaway waiting for you.
+</p>          </div>
             </Carousel.Caption>
           </Carousel.Item>
 
@@ -30,14 +27,12 @@ const Banner = () => {
             <Carousel.Caption>
               <div className="slider_des">
                 <h5 className="heading">
-                  BEAUTIFUL PLACE <span>TO VISIT</span>
-                </h5>
-                <p className="sub_text">
-                  Lorem Ipsum is simply dummy text of the printing and
-                  typesetting industry. Lorem Ipsum has been the industry's
-                  standard dummy text ever since the 1500s,
-                </p>
-              </div>
+  DISCOVER <span>THE WORLD WITH US</span>
+</h5>
+<p className="sub_text">
+  Embark on unforgettable journeys to breathtaking destinations. Whether you're craving adventure, culture, or relaxation — we've got the perfect getaway waiting for you.
+</p>
+   </div>
             </Carousel.Caption>
           </Carousel.Item>
         </Carousel>

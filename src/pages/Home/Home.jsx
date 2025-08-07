@@ -84,7 +84,7 @@ const Home = () => {
           </Row>
           <Row>
             {popularsData.map((val, inx) => (
-              <Col md={3} sm={6} xs={12} className="mb-5" key={inx}>
+              <Col md={4} sm={6} xs={12} className="mb-5" key={inx}>
                 <PopularCard val={val} />
               </Col>
             ))}
@@ -97,10 +97,10 @@ const Home = () => {
         <Container>
           <Row className="align-items-center">
             <Col md="8">
-              <h5 className="title">CALL TO ACTION</h5>
-              <h2 className="heading">READY FOR UNFORGETTABLE TRAVEL. REMEMBER US!</h2>
+              <h5 className="title">Plan Your Next Adventure</h5>
+              <h2 className="heading">Ready to Create Unforgettable Memories?</h2>
               <p className="text">
-                Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+                 Discover breathtaking destinations and unique experiences that you'll cherish for a lifetime. Start your journey with us today!
               </p>
             </Col>
             <Col md="4" className="text-center mt-3 mt-md-0">

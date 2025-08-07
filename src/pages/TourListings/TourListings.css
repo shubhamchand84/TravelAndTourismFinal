@@ -1,0 +1,118 @@
+.tourlistings-container {
+  font-family: 'Segoe UI', sans-serif;
+  color: #1e293b;
+}
+
+/* Hero Section */
+.hero {
+  background: url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e') no-repeat center center/cover;
+  padding: 120px 20px;
+  text-align: center;
+  color: white;
+  position: relative;
+}
+
+.hero::after {
+  content: "";
+  position: absolute;
+  top: 0; left: 0;
+  right: 0; bottom: 0;
+  background: rgba(0, 0, 0, 0.4);
+  z-index: 1;
+}
+
+.hero-title,
+.hero-subtitle {
+  position: relative;
+  z-index: 2;
+}
+
+.hero-title {
+  font-size: 4rem;
+  font-weight: 800;
+  letter-spacing: 2px;
+}
+
+.hero-subtitle {
+  font-size: 1.2rem;
+  margin-top: 10px;
+}
+
+/* Content */
+.content {
+  max-width: 960px;
+  margin: 60px auto;
+  padding: 0 20px;
+  text-align: center;
+}
+
+.section-title {
+  font-size: 2rem;
+  color: #0f172a;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+.section-subtitle {
+  font-size: 1rem;
+  color: #475569;
+  margin-bottom: 40px;
+}
+
+/* Tour Sections */
+.tour-section {
+  text-align: left;
+  margin-bottom: 40px;
+}
+
+.tour-section h3 {
+  font-size: 1.3rem;
+  color: #0d6efd;
+  margin-bottom: 8px;
+}
+
+.tour-section p {
+  font-size: 1rem;
+  color: #334155;
+}
+
+.tour-section ul {
+  list-style: none;
+  padding-left: 0;
+  margin-top: 10px;
+}
+
+.tour-section ul li {
+  padding: 6px 0;
+  color: #475569;
+}
+
+.tour-section ul li strong {
+  color: #0f172a;
+}
+
+/* Benefits Section */
+.benefits {
+  background-color: #f1f5f9;
+  padding: 60px 20px;
+  text-align: center;
+}
+
+.benefits h3 {
+  font-size: 1.5rem;
+  margin-bottom: 25px;
+  color: #0f172a;
+}
+
+.benefits ul {
+  list-style: none;
+  padding: 0;
+  margin: 0 auto;
+  max-width: 600px;
+}
+
+.benefits li {
+  padding: 10px 0;
+  font-size: 1rem;
+  color: #475569;
+}
