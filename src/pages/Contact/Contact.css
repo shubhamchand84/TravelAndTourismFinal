@@ -102,3 +102,53 @@
   background-color: rgba(255, 255, 255, 0.1);
   color: #fff;
 }
+
+
+/* Mobile responsive adjustments */
+@media (max-width: 768px) {
+  .contact-container {
+    padding-top: 80px;
+    padding-bottom: 40px;
+    align-items: flex-start;
+  }
+
+  .contact-overlay {
+    padding: 30px 20px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+  }
+
+  .contact-info h2 {
+    font-size: 24px;
+    margin-bottom: 15px;
+  }
+
+  .contact-form h3 {
+    font-size: 20px;
+    margin-bottom: 15px;
+  }
+
+  .contact-form {
+    padding: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .contact-container {
+    padding-top: 100px;
+    padding-bottom: 30px;
+  }
+
+  .contact-overlay {
+    padding: 25px 15px;
+    width: 95%;
+  }
+
+  .contact-info h2 {
+    font-size: 22px;
+  }
+
+  .contact-form h3 {
+    font-size: 18px;
+  }
+}

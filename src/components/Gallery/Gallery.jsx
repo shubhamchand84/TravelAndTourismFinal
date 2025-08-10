@@ -27,7 +27,7 @@ const GalleryComponent = () => {
           gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))",
           gap: "20px",
         }}
-        className="rounded-2xl shadow-xl border border-gray-200 p-6 bg-white hover:shadow-2xl transition-all duration-300"
+        className="rounded-2xl shadow-xl p-6 bg-white hover:shadow-2xl transition-all duration-300"
       >
         {photos.map((photo, idx) => (
           <div key={idx} style={{ textAlign: "center" }}>
