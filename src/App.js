@@ -13,7 +13,7 @@ import ImageGallery from "./components/ImageMemory/ImageGallery";
 // Import new pages
 import About from "./pages/About/About";
 import Contact from "./pages/Contact/Contact";
-import Faq from "./pages/Faq/Faq";
+import Activities from "./pages/Activities/Activities";
 import News from "./pages/News/News";
 import Destination from "./pages/Destination/Destination";
 import TourListings from "./pages/TourListings/TourListings";
@@ -32,7 +32,7 @@ function App() {
           {/* New Routes */}
           <Route path="/about" element={<About />} />
           <Route path="/contact" element={<Contact />} />
-          <Route path="/faq" element={<Faq />} />
+          <Route path="/activities" element={<Activities />} />
           <Route path="/news" element={<News />} />
           <Route path="/destination" element={<Destination />} />
           <Route path="/tour-listings" element={<TourListings />} />

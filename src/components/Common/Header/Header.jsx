@@ -1,12 +1,8 @@
 import React, { useEffect, useState } from "react";
-import {
-  Container,
-  Navbar,
-  Offcanvas,
-  Nav,
-} from "react-bootstrap";
+import { Container, Navbar, Offcanvas, Nav } from "react-bootstrap";
 import { NavLink, useLocation } from "react-router-dom";
 import "../Header/header.css";
+import logo from "../../../assets/images/logo/logo.jpg"; // Adjust this path if needed
 
 const Header = () => {
   const [open, setOpen] = useState(false);
@@ -16,72 +12,97 @@ const Header = () => {
     setOpen(!open);
   };
 
-  useEffect(() => {
-    window.addEventListener("scroll", isSticky);
-    return () => {
-      window.removeEventListener("scroll", isSticky);
-    };
-  });
-
-  // sticky Header
-  const isSticky = (e) => {
-    const header = document.querySelector('.header-section');
-    const scrollTop = window.scrollY;
-    scrollTop >= 120 ? header.classList.add('is-sticky') :
-      header.classList.remove('is-sticky');
+  // Close menu on navigation
+  const closeMenu = () => {
+    setOpen(false);
   };
 
-  // Add a class if not on home page
+  // Sticky header listener
+  useEffect(() => {
+    const handleScroll = () => {
+      const header = document.querySelector(".header-section");
+      if (!header) return; // ✅ Prevents null error
+
+      const scrollTop = window.scrollY;
+      if (scrollTop >= 120) {
+        header.classList.add("is-sticky");
+      } else {
+        header.classList.remove("is-sticky");
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
+  // Check if on homepage
   const isHome = location.pathname === "/";
+
+  // Menu links array
+  const menuLinks = [
+    { path: "/", label: "HOME" },
+    { path: "/about", label: "ABOUT US" },
+    { path: "/tour-listings", label: "TOURS" },
+    { path: "/activities", label: "ACTIVITIES" },
+    { path: "/destination", label: "DESTINATION" },
+    { path: "/gallery", label: "GALLERY" },
+    { path: "/contact", label: "CONTACT" },
+  ];
 
   return (
     <header className={`header-section${!isHome ? " header-black" : ""}`}>
       <Container>
         <Navbar expand="lg" className="p-0">
-          {/* Logo Section  */}
+          {/* Logo Section */}
           <Navbar.Brand>
-            <NavLink to="/"> NorthIndianTrip</NavLink>
+            <NavLink to="/" className="d-flex align-items-center">
+              <img src={logo} alt="Northern Indian Trip Logo" className="logo-img me-2" />
+              NorthernIndianTrip
+            </NavLink>
           </Navbar.Brand>
-          {/* End Logo Section  */}
 
+          {/* Offcanvas Menu */}
           <Navbar.Offcanvas
             id={`offcanvasNavbar-expand-lg`}
             aria-labelledby={`offcanvasNavbarLabel-expand-lg`}
             placement="start"
             show={open}
           >
-            {/*mobile Logo Section  */}
+            {/* Mobile Logo */}
             <Offcanvas.Header>
-              <h1 className="logo">Weekendmonks</h1>
+              <NavLink
+                to="/"
+                className="d-flex align-items-center logo-mobile"
+                onClick={closeMenu}
+              >
+                <img src={logo} alt="Northern Indian Trip Logo" className="logo-img me-2" />
+                <h1 className="m-0">Northern Indian Trip</h1>
+              </NavLink>
               <span className="navbar-toggler ms-auto" onClick={toggleMenu}>
                 <i className="bi bi-x-lg"></i>
               </span>
             </Offcanvas.Header>
-            {/*end mobile Logo Section  */}
+
+            {/* Menu Items */}
             <Offcanvas.Body>
               <Nav className="justify-content-end flex-grow-1 pe-3">
-                <NavLink className="nav-link" to="/">
-                  Home
-                </NavLink>
-                <NavLink className="nav-link" to="/about">
-                  ABOUT US
-                </NavLink>
-                <NavLink className="nav-link" to="/tour-listings">
-                  TOURS
-                </NavLink>
-                <NavLink className="nav-link" to="/destination">
-                  DESTINATION
-                </NavLink>
-                <NavLink className="nav-link" to="/gallery">
-                  GALLERY
-                </NavLink>
-                <NavLink className="nav-link" to="/contact">
-                  CONTACT
-                </NavLink>
+                {menuLinks.map((link, index) => (
+                  <NavLink
+                    key={index}
+                    className="nav-link"
+                    to={link.path}
+                    onClick={closeMenu}
+                  >
+                    {link.label}
+                  </NavLink>
+                ))}
               </Nav>
             </Offcanvas.Body>
           </Navbar.Offcanvas>
 
+          {/* Book Now & Mobile Toggle */}
           <div className="ms-md-4 ms-2">
             <NavLink className="primaryBtn d-none d-sm-inline-block" to="/book-now">
               Book Now
@@ -90,7 +111,6 @@ const Header = () => {
               <i className={open ? "bi bi-x-lg" : "bi bi-list"} onClick={toggleMenu}></i>
             </li>
           </div>
-
         </Navbar>
       </Container>
     </header>

@@ -39,7 +39,7 @@ const ImageGallery = () => {
   const handleComment = async (id, text) => {
     const username = "Guest";
     try {
-      await axios.post(`http://localhost:5000/api/images/${id}/comment`, {
+      await axios.post(`http://localhost:5000/api/images/₹{id}/comment`, {
         username,
         text,
       });
@@ -82,7 +82,7 @@ const ImageGallery = () => {
                   <h6 className="text-muted mb-2">💬 Comments:</h6>
                   {item.comments.length > 0 ? (
                     item.comments.map((c, i) => (
-                      <div key={`${item._id}-comment-${i}`} className="mb-1">
+                      <div key={`₹{item._id}-comment-₹{i}`} className="mb-1">
                         <strong>{c.username}:</strong> {c.text}
                       </div>
                     ))

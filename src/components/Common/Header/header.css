@@ -1,16 +1,25 @@
-/* sticky menu  */
+/* -------------------------
+   Color Variables
+-------------------------- */
+:root {
+  --blackBg: #000000; /* Solid black */
+}
 
+/* -------------------------
+   Sticky Menu
+-------------------------- */
 .is-sticky {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
-  animation: smothScroll 1s forwards;
-  background: var(--white);
+  animation: smoothScroll 0.5s forwards;
+  background: var(--blackBg) !important;
   z-index: 999;
   box-shadow: var(--bs-box-shadow-sm) !important;
 }
-@keyframes smothScroll {
+
+@keyframes smoothScroll {
   0% {
     transform: translateY(-40px);
   }
@@ -21,19 +30,24 @@
 
 .is-sticky .navbar .navbar-brand a,
 .is-sticky .navbar .offcanvas-body a {
-  color: var(--black) !important;
+  color: var(--white) !important;
 }
 
 .is-sticky .toggle_btn {
-  color: var(--primaryClr) !important;
+  color: var(--white) !important;
+  border: 2px solid var(--white);
 }
 
+/* -------------------------
+   Default Header (Home page)
+-------------------------- */
 header {
   position: absolute;
   top: 0;
   z-index: 999;
-  padding: 12px 0px;
+  padding: 6px 0px;
   width: 100%;
+  background: transparent;
 }
 
 header .navbar .navbar-brand a {
@@ -56,7 +70,7 @@ header .navbar .offcanvas-body a {
 }
 
 header .navbar .offcanvas-body .dropdown-menu a {
-  color:black !important
+  color: var(--black) !important;
 }
 
 header .navbar .offcanvas-body a:hover {
@@ -71,11 +85,21 @@ header .navbar .offcanvas-body .dropdown-menu .dropdown-item {
   color: var(--black) !important;
 }
 
+/* -------------------------
+   Non-Home Pages (Header Black)
+-------------------------- */
 .header-black {
-  background: #000 !important;
-  color: #fff !important;
+  background: var(--blackBg) !important;
 }
 
+.header-black .navbar .navbar-brand a,
+.header-black .navbar .offcanvas-body a {
+  color: var(--white) !important;
+}
+
+/* -------------------------
+   Mobile Styles
+-------------------------- */
 @media only screen and (max-width: 991px) {
   header .navbar .toggle_btn {
     font-size: var(--bodyText);
@@ -85,14 +109,15 @@ header .navbar .offcanvas-body .dropdown-menu .dropdown-item {
   }
 
   .is-sticky .navbar .toggle_btn {
-    border: 2px solid var(--primaryClr);
+    color: var(--white) !important;
+    border: 2px solid var(--white);
   }
 
   .offcanvas-header {
-    border: 1px solid gainsboro;
+    border-bottom: 1px solid gainsboro;
   }
 
-  .offcanvas-header .logo{
+  .offcanvas-header .logo {
     font-size: 26px;
     color: var(--black) !important;
     font-family: var(--fontFamily1);
@@ -102,15 +127,27 @@ header .navbar .offcanvas-body .dropdown-menu .dropdown-item {
 
   .offcanvas-body .nav-link {
     padding: 12px 0px;
-    color:var(--black);
+    color: var(--black) !important;
   }
 
-  .offcanvas-body .dropdown-item{
+  .offcanvas-body .dropdown-item {
     padding: 12px 10px;
-    color:var(--black);
+    color: var(--black) !important;
   }
+}
 
+/* -------------------------
+   Logo Styles
+-------------------------- */
+.logo-img {
+  height: 40px;
+  width: auto;
+  object-fit: contain;
+}
 
-
-
+.logo-mobile h1 {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: var(--black);
+  margin: 0;
 }

@@ -38,7 +38,7 @@ const ProductCard = ({ val }) => {
         {val.afterDiscount ? (
           <p className="text-decoration-line-through">
             {" "}
-            ${val.price.toFixed(2)}
+            ₹{val.price.toFixed(2)}
           </p>
         ) : (
           ""
@@ -49,8 +49,8 @@ const ProductCard = ({ val }) => {
             From{" "}
             <b>
               {val.afterDiscount
-                ? '$'+val.afterDiscount.toFixed(2)
-                : '$'+val.price.toFixed(2)}
+                ? '₹'+val.afterDiscount.toFixed(2)
+                : '₹'+val.price.toFixed(2)}
             </b>
           </p>
           <p>

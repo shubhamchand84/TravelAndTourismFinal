@@ -39,7 +39,7 @@ const PopularCard = ({val}) => {
 
               <Card.Footer className="py-4">
                 {val.afterDiscount ? (
-                  <p className="text-decoration-line-through"> ${val.price.toFixed(2)}</p>
+                  <p className="text-decoration-line-through"> ₹{val.price.toFixed(2)}</p>
                 ): ""}
                
                 <Stack
