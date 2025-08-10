@@ -1,13 +1,8 @@
-/* -------------------------
-   Color Variables
--------------------------- */
+
 :root {
-  --blackBg: #000000; /* Solid black */
+  --blackBg: #000000; 
 }
 
-/* -------------------------
-   Sticky Menu
--------------------------- */
 .is-sticky {
   position: fixed;
   top: 0;
@@ -38,9 +33,7 @@
   border: 2px solid var(--white);
 }
 
-/* -------------------------
-   Default Header (Home page)
--------------------------- */
+
 header {
   position: absolute;
   top: 0;
@@ -85,9 +78,7 @@ header .navbar .offcanvas-body .dropdown-menu .dropdown-item {
   color: var(--black) !important;
 }
 
-/* -------------------------
-   Non-Home Pages (Header Black)
--------------------------- */
+
 .header-black {
   background: var(--blackBg) !important;
 }
@@ -97,9 +88,7 @@ header .navbar .offcanvas-body .dropdown-menu .dropdown-item {
   color: var(--white) !important;
 }
 
-/* -------------------------
-   Mobile Styles
--------------------------- */
+
 @media only screen and (max-width: 991px) {
   header .navbar .toggle_btn {
     font-size: var(--bodyText);
@@ -136,9 +125,7 @@ header .navbar .offcanvas-body .dropdown-menu .dropdown-item {
   }
 }
 
-/* -------------------------
-   Logo Styles
--------------------------- */
+
 .logo-img {
   height: 40px;
   width: auto;
