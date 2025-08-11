@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { FaInstagram } from "react-icons/fa";
+import { useNavigate } from "react-router-dom";
 import emailjs from "@emailjs/browser";
 import "./Contact.css";
 import backgroundImage from "../../assets/images/contact/background.jpeg";
@@ -12,6 +13,7 @@ const Contact = () => {
   });
 
   const [submitted, setSubmitted] = useState(false);
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
@@ -37,6 +39,16 @@ const Contact = () => {
       email: "",
       message: "",
     });
+  };
+
+  const handleTermsClick = (e) => {
+    e.preventDefault();
+    navigate("/terms");
+  };
+
+  const handlePrivacyClick = (e) => {
+    e.preventDefault();
+    navigate("/privacy");
   };
 
   return (
@@ -107,12 +119,12 @@ const Contact = () => {
         </div>
 
         <div className="legal-links">
-          <a href="/terms" className="legal-link terms-link">
+          <button onClick={handleTermsClick} className="legal-link terms-link">
             Terms & Conditions
-          </a>
-          <a href="/privacy" className="legal-link privacy-link">
+          </button>
+          <button onClick={handlePrivacyClick} className="legal-link privacy-link">
             Privacy Policy
-          </a>
+          </button>
         </div>
       </div>
     </div>

@@ -25,24 +25,22 @@ function App() {
   return (
     <>
       <Header />
-      <div className="container mt-4 mb-4">
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/upload" element={<ImageUpload />} />
-          <Route path="/gallery" element={<ImageGallery />} />
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/upload" element={<ImageUpload />} />
+        <Route path="/gallery" element={<ImageGallery />} />
 
-          {/* New Routes */}
-          <Route path="/about" element={<About />} />
-          <Route path="/contact" element={<Contact />} />
-          <Route path="/activities" element={<Activities />} />
-          <Route path="/news" element={<News />} />
-          <Route path="/destination" element={<Destination />} />
-          <Route path="/tour-listings" element={<TourListings />} />
-          <Route path="/book-now" element={<BookNow />} />
-          <Route path="/terms" element={<TermsConditionsPage />} />
-          <Route path="/privacy" element={<PrivacyPolicyPage />} />
-        </Routes>
-      </div>
+        {/* New Routes */}
+        <Route path="/about" element={<About />} />
+        <Route path="/contact" element={<Contact />} />
+        <Route path="/activities" element={<Activities />} />
+        <Route path="/news" element={<News />} />
+        <Route path="/destination" element={<Destination />} />
+        <Route path="/tour-listings" element={<TourListings />} />
+        <Route path="/book-now" element={<BookNow />} />
+        <Route path="/terms" element={<TermsConditionsPage />} />
+        <Route path="/privacy" element={<PrivacyPolicyPage />} />
+      </Routes>
       <Footer />
     </>
   );
