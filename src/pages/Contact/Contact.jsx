@@ -74,7 +74,7 @@ const Contact = () => {
           <h3>Send a Message</h3>
           {submitted ? (
             <div className="success-message">
-              Thank you! Your message has been sent. We’ll be in touch.
+              Thank you! Your message has been sent. We'll be in touch.
             </div>
           ) : (
             <form onSubmit={handleSubmit}>
@@ -104,6 +104,15 @@ const Contact = () => {
               <button type="submit">Submit</button>
             </form>
           )}
+        </div>
+
+        <div className="legal-links">
+          <a href="/terms" className="legal-link terms-link">
+            Terms & Conditions
+          </a>
+          <a href="/privacy" className="legal-link privacy-link">
+            Privacy Policy
+          </a>
         </div>
       </div>
     </div>

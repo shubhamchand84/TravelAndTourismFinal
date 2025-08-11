@@ -17,7 +17,9 @@ import Activities from "./pages/Activities/Activities";
 import News from "./pages/News/News";
 import Destination from "./pages/Destination/Destination";
 import TourListings from "./pages/TourListings/TourListings";
-import BookNow from "./pages/BookNow/BookNow"; // <-- Add this line
+import BookNow from "./pages/BookNow/BookNow";
+import TermsConditionsPage from "./pages/TermsConditions/TermsConditions";
+import PrivacyPolicyPage from "./pages/PrivacyPolicy/PrivacyPolicy";
 
 function App() {
   return (
@@ -36,7 +38,9 @@ function App() {
           <Route path="/news" element={<News />} />
           <Route path="/destination" element={<Destination />} />
           <Route path="/tour-listings" element={<TourListings />} />
-          <Route path="/book-now" element={<BookNow />} /> {/* Add this route */}
+          <Route path="/book-now" element={<BookNow />} />
+          <Route path="/terms" element={<TermsConditionsPage />} />
+          <Route path="/privacy" element={<PrivacyPolicyPage />} />
         </Routes>
       </div>
       <Footer />
