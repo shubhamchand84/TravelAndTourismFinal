@@ -2,6 +2,7 @@ import React, { useEffect, useState, useRef } from "react";
 import axios from "axios";
 import io from "socket.io-client";
 import ImageUpload from "./ImageUpload";
+import "./gallery.css"; // make sure to import your CSS
 
 const ImageGallery = () => {
   const [mediaItems, setMediaItems] = useState([]);
@@ -39,7 +40,7 @@ const ImageGallery = () => {
   const handleComment = async (id, text) => {
     const username = "Guest";
     try {
-      await axios.post(`http://localhost:5000/api/images/₹{id}/comment`, {
+      await axios.post(`http://localhost:5000/api/images/${id}/comment`, {
         username,
         text,
       });
@@ -54,13 +55,11 @@ const ImageGallery = () => {
   };
 
   return (
-    <div className="container py-5">
+    <div className="container gallery-container">
       <h2 className="text-center mb-4 text-primary fw-bold">📁 Media Gallery</h2>
 
-      {/* ✅ Upload section included here */}
       <ImageUpload onUploadSuccess={fetchMedia} />
 
-      {/* Gallery section */}
       <div className="row gy-4 mt-4">
         {mediaItems.map((item) => (
           <div key={item._id} className="col-md-6">
@@ -68,7 +67,11 @@ const ImageGallery = () => {
               <div className="card-body">
                 <div className="mb-3 text-center">
                   {item.mediaType === "video" ? (
-                    <video src={item.mediaUrl} className="w-100 rounded" controls />
+                    <video
+                      src={item.mediaUrl}
+                      className="w-100 rounded"
+                      controls
+                    />
                   ) : (
                     <img
                       src={item.mediaUrl}
@@ -77,12 +80,17 @@ const ImageGallery = () => {
                     />
                   )}
                 </div>
-                <p><strong>Description:</strong> {item.description}</p>
-                <div className="bg-light rounded p-3 mb-3" style={{ maxHeight: "150px", overflowY: "auto" }}>
+                <p>
+                  <strong>Description:</strong> {item.description}
+                </p>
+                <div
+                  className="bg-light rounded p-3 mb-3"
+                  style={{ maxHeight: "150px", overflowY: "auto" }}
+                >
                   <h6 className="text-muted mb-2">💬 Comments:</h6>
                   {item.comments.length > 0 ? (
                     item.comments.map((c, i) => (
-                      <div key={`₹{item._id}-comment-₹{i}`} className="mb-1">
+                      <div key={`${item._id}-comment-${i}`} className="mb-1">
                         <strong>{c.username}:</strong> {c.text}
                       </div>
                     ))
