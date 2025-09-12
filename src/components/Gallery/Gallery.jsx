@@ -1,20 +1,24 @@
 import React from "react";
 
 // Image imports
-import GalleryImg1 from "../../assets/images/gallery/g1.jpg";
-import GalleryImg3 from "../../assets/images/gallery/g3.jpg";
-import GalleryImg4 from "../../assets/images/gallery/g4.jpg";
-import GalleryImg6 from "../../assets/images/gallery/g6.jpg";
-import GalleryImg7 from "../../assets/images/gallery/g7.jpg";
+import GalleryImg1 from "../../assets/images/gallery/valleyOflowers.webp";
+import GalleryImg3 from "../../assets/images/gallery/kedarnath.webp";
+import GalleryImg4 from "../../assets/images/gallery/kedarkantha.webp";
+import GalleryImg6 from "../../assets/images/gallery/rishikesh.webp";
+import GalleryImg7 from "../../assets/images/gallery/Hari-Ki-Doon-Day.webp";
+import GalleryImg5 from "../../assets/images/gallery/dayraBugyal.webp";
+import GalleryImg2 from "../../assets/images/gallery/kuari-pass-trek.webp";
 
 // Photo metadata
 const photos = [
-  { src: GalleryImg1, desc: "Mountain Sunrise" },
-  { src: GalleryImg3, desc: "Historic Fort, India" },
-  { src: GalleryImg6, desc: "Desert Dunes" },
-  { src: GalleryImg4, desc: "Jaipur, Rajasthan" },
-  { src: GalleryImg7, desc: "Serene Lake" },
-  { src: GalleryImg6, desc: "White Rann of Kutch" },
+  { src: GalleryImg1, desc: "Valley of Flowers" },
+  { src: GalleryImg3, desc: "Kedarnath" },
+  { src: GalleryImg6, desc: "Rishikesh" },
+  { src: GalleryImg4, desc: "Kedarkantha" },
+  { src: GalleryImg7, desc: "Hari Ki Doon Day" },
+  { src: GalleryImg5, desc: "Dayra Bugyal" },
+  { src: GalleryImg2, desc: "kuari pass trek" },
+ 
 ];
 
 const GalleryComponent = () => {

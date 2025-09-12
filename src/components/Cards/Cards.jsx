@@ -7,7 +7,10 @@ const Cards = ({destination}) => {
   return (
     <>
       <div className="img-box">
-      <NavLink className="body-text text-dark text-decoration-none" to="/tours"> 
+      {/* <NavLink className="body-text text-dark text-decoration-none" to="/tours">  */}
+    <NavLink to={`/tour/${destination.id}`}>
+
+
         <Card>
           <Card.Img
             variant="top"

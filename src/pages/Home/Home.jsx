@@ -133,23 +133,23 @@ const Home = () => {
         </Container>
       </section>
 
-      {/* ✅ Memory Upload + Gallery (Only once now) */}
-      <section className="memory_gallery py-5">
-        <Container>
-          <Row>
-            <Col md="12">
-              <div className="main_heading">
-                <h1>Share Your Travel Memories</h1>
-              </div>
-            </Col>
-          </Row>
-          <Row>
-            <Col md="12">
-              {/* <ImageGallery /> */}
-            </Col>
-          </Row>
-        </Container>
-      </section>
+  {/* ✅ Memory Upload + Gallery (Only once now) */}
+-      <section className="memory_gallery py-5">
+-        <Container>
+-          <Row>
+-            <Col md="12">
+-              <div className="main_heading">
+-                <h1>Share Your Travel Memories</h1>
+-              </div>
+-            </Col>
+-          </Row>
+-          <Row>
+-            <Col md="12">
+-              {/* <ImageGallery /> */}
+-            </Col>
+-          </Row>
+-        </Container>
+-      </section>
     </>
   );
 };
