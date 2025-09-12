@@ -3,10 +3,12 @@ import { Container, Navbar, Offcanvas, Nav } from "react-bootstrap";
 import { NavLink, useLocation } from "react-router-dom";
 import "../Header/header.css";
 import logo from "../../../assets/images/logo/logo.jpg"; // Adjust this path if needed
+import { useAuth } from "../../../context/AuthContext"; // Import auth context
 
 const Header = () => {
   const [open, setOpen] = useState(false);
   const location = useLocation();
+  const { user, isAuthenticated } = useAuth();
 
   const toggleMenu = () => {
     setOpen(!open);
@@ -50,6 +52,31 @@ const Header = () => {
     { path: "/gallery", label: "GALLERY" },
     { path: "/contact", label: "CONTACT" },
   ];
+  
+  // Add admin link conditionally
+  console.log('Checking admin status:', { 
+    isAuthenticated, 
+    user, 
+    userIsAdmin: user?.isAdmin,
+    userIsAdminType: typeof user?.isAdmin,
+    userObject: JSON.stringify(user)
+  });
+  
+  // Force boolean evaluation and add admin link if user is admin
+  const userIsAdmin = Boolean(user?.isAdmin);
+  if (isAuthenticated && userIsAdmin) {
+    console.log('Adding ADMIN link to menu');
+    menuLinks.push({ path: "/admin", label: "ADMIN" });
+  }
+  
+  // Log authentication state for debugging
+  console.log('Auth state in Header:', { 
+    isAuthenticated, 
+    user, 
+    userIsAdmin,
+    hasAdminLink: menuLinks.some(link => link.label === "ADMIN"),
+    token: localStorage.getItem('token')
+  });
 
   return (
     <header className={`header-section${!isHome ? " header-black" : ""}`}>

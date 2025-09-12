@@ -10,7 +10,7 @@ const ImageGallery = () => {
 
   const fetchMedia = async () => {
     try {
-      const res = await axios.get("http://localhost:5000/api/images");
+      const res = await axios.get("http://localhost:5001/api/images");
       setMediaItems(res.data);
     } catch (err) {
       console.error("Error fetching media:", err);
@@ -20,7 +20,7 @@ const ImageGallery = () => {
   useEffect(() => {
     fetchMedia();
 
-    socketRef.current = io("http://localhost:5000");
+    socketRef.current = io("http://localhost:5001");
 
     socketRef.current.on("receive-comment", ({ imageId, comment }) => {
       setMediaItems((prev) =>
@@ -40,7 +40,7 @@ const ImageGallery = () => {
   const handleComment = async (id, text) => {
     const username = "Guest";
     try {
-      await axios.post(`http://localhost:5000/api/images/${id}/comment`, {
+      await axios.post(`http://localhost:5001/api/images/${id}/comment`, {
         username,
         text,
       });

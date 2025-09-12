@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Token Debug</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+        .container {
+            background-color: #f5f5f5;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+        h1 {
+            color: #333;
+        }
+        pre {
+            background-color: #eee;
+            padding: 10px;
+            border-radius: 4px;
+            overflow-x: auto;
+        }
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-right: 10px;
+            margin-bottom: 10px;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        .error {
+            color: #f44336;
+            font-weight: bold;
+        }
+        .success {
+            color: #4CAF50;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <h1>Token Debug Tool</h1>
+    
+    <div class="container">
+        <h2>Current Token Status</h2>
+        <div id="token-status">Checking...</div>
+        <button id="refresh-btn">Refresh Status</button>
+        <button id="clear-token">Clear Token</button>
+    </div>
+    
+    <div class="container">
+        <h2>Token Verification</h2>
+        <div id="verification-result">Click verify to check token with server</div>
+        <button id="verify-btn">Verify Token</button>
+    </div>
+    
+    <div class="container">
+        <h2>Login</h2>
+        <p>Username: <input type="text" id="username" value="admin"></p>
+        <p>Password: <input type="password" id="password" value="admin123"></p>
+        <button id="login-btn">Login</button>
+        <div id="login-result"></div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const tokenStatusDiv = document.getElementById('token-status');
+            const verificationResultDiv = document.getElementById('verification-result');
+            const loginResultDiv = document.getElementById('login-result');
+            const refreshBtn = document.getElementById('refresh-btn');
+            const verifyBtn = document.getElementById('verify-btn');
+            const clearTokenBtn = document.getElementById('clear-token');
+            const loginBtn = document.getElementById('login-btn');
+            const usernameInput = document.getElementById('username');
+            const passwordInput = document.getElementById('password');
+            
+            // Check token status
+            function checkTokenStatus() {
+                const token = localStorage.getItem('token');
+                
+                if (!token) {
+                    tokenStatusDiv.innerHTML = '<span class="error">No token found in localStorage</span>';
+                    return;
+                }
+                
+                try {
+                    // JWT tokens are in format: header.payload.signature
+                    // We can decode the payload (middle part) to see what's inside
+                    const parts = token.split('.');
+                    if (parts.length !== 3) {
+                        tokenStatusDiv.innerHTML = '<span class="error">Invalid token format</span>';
+                        return;
+                    }
+                    
+                    // Base64 decode the payload
+                    const payload = JSON.parse(atob(parts[1]));
+                    
+                    // Format the payload for display
+                    const formattedPayload = JSON.stringify(payload, null, 2);
+                    
+                    // Check if user has admin privileges
+                    const isAdmin = payload.user && payload.user.isAdmin === true;
+                    
+                    tokenStatusDiv.innerHTML = `
+                        <p><span class="${isAdmin ? 'success' : 'error'}">Admin Status: ${isAdmin ? 'YES' : 'NO'}</span></p>
+                        <p>Token Payload:</p>
+                        <pre>${formattedPayload}</pre>
+                        <p>Expiration: ${new Date(payload.exp * 1000).toLocaleString()}</p>
+                    `;
+                } catch (error) {
+                    tokenStatusDiv.innerHTML = `<span class="error">Error decoding token: ${error.message}</span>`;
+                }
+            }
+            
+            // Verify token with server
+            async function verifyToken() {
+                const token = localStorage.getItem('token');
+                
+                if (!token) {
+                    verificationResultDiv.innerHTML = '<span class="error">No token to verify</span>';
+                    return;
+                }
+                
+                try {
+                    verificationResultDiv.innerHTML = 'Verifying...';
+                    
+                    const response = await fetch('http://localhost:5001/api/auth/verify', {
+                        method: 'GET',
+                        headers: {
+                            'x-auth-token': token
+                        }
+                    });
+                    
+                    const data = await response.json();
+                    
+                    if (response.ok) {
+                        verificationResultDiv.innerHTML = `
+                            <p><span class="success">Token is valid!</span></p>
+                            <pre>${JSON.stringify(data, null, 2)}</pre>
+                        `;
+                    } else {
+                        verificationResultDiv.innerHTML = `
+                            <p><span class="error">Token verification failed</span></p>
+                            <pre>${JSON.stringify(data, null, 2)}</pre>
+                        `;
+                    }
+                } catch (error) {
+                    verificationResultDiv.innerHTML = `<span class="error">Error: ${error.message}</span>`;
+                }
+            }
+            
+            // Login function
+            async function login() {
+                const username = usernameInput.value.trim();
+                const password = passwordInput.value.trim();
+                
+                if (!username || !password) {
+                    loginResultDiv.innerHTML = '<span class="error">Please enter both username and password</span>';
+                    return;
+                }
+                
+                try {
+                    loginResultDiv.innerHTML = 'Logging in...';
+                    
+                    const response = await fetch('http://localhost:5001/api/auth/login', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({ username, password })
+                    });
+                    
+                    const data = await response.json();
+                    
+                    if (response.ok) {
+                        localStorage.setItem('token', data.token);
+                        loginResultDiv.innerHTML = `
+                            <p><span class="success">Login successful!</span></p>
+                            <pre>${JSON.stringify(data, null, 2)}</pre>
+                        `;
+                        // Refresh token status
+                        checkTokenStatus();
+                    } else {
+                        loginResultDiv.innerHTML = `
+                            <p><span class="error">Login failed</span></p>
+                            <pre>${JSON.stringify(data, null, 2)}</pre>
+                        `;
+                    }
+                } catch (error) {
+                    loginResultDiv.innerHTML = `<span class="error">Error: ${error.message}</span>`;
+                }
+            }
+            
+            // Clear token
+            function clearToken() {
+                localStorage.removeItem('token');
+                tokenStatusDiv.innerHTML = '<span class="error">Token cleared</span>';
+                verificationResultDiv.innerHTML = 'Token has been cleared';
+            }
+            
+            // Event listeners
+            refreshBtn.addEventListener('click', checkTokenStatus);
+            verifyBtn.addEventListener('click', verifyToken);
+            clearTokenBtn.addEventListener('click', clearToken);
+            loginBtn.addEventListener('click', login);
+            
+            // Initial check
+            checkTokenStatus();
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,288 @@
+.tour-detail-container {
+  font-family: 'Segoe UI', sans-serif;
+  color: #1e293b;
+}
+
+/* Hero Section */
+.tour-hero {
+  background-size: cover;
+  background-position: center;
+  height: 500px;
+  position: relative;
+  display: flex;
+  align-items: flex-end;
+  color: white;
+  padding-bottom: 50px;
+}
+
+.tour-hero .overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(to bottom, rgba(0,0,0,0.2), rgba(0,0,0,0.7));
+  z-index: 1;
+}
+
+.tour-hero .container {
+  position: relative;
+  z-index: 2;
+}
+
+.tour-title {
+  font-size: 3rem;
+  font-weight: 800;
+  margin-bottom: 20px;
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+}
+
+.tour-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  font-size: 1.1rem;
+}
+
+.tour-meta span {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* Section Styling */
+.tour-section {
+  margin-bottom: 50px;
+}
+
+.section-title {
+  font-size: 1.8rem;
+  color: #0f172a;
+  font-weight: 700;
+  margin-bottom: 20px;
+  padding-bottom: 10px;
+  border-bottom: 2px solid #e2e8f0;
+}
+
+.tour-description {
+  font-size: 1.1rem;
+  line-height: 1.7;
+  color: #334155;
+}
+
+/* Season Cards */
+.season-cards {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  margin-top: 20px;
+}
+
+.season-card {
+  flex: 1;
+  min-width: 250px;
+  background-color: #f8fafc;
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+  transition: transform 0.3s ease;
+}
+
+.season-card:hover {
+  transform: translateY(-5px);
+}
+
+.season-icon {
+  font-size: 2rem;
+  color: #0ea5e9;
+  margin-bottom: 15px;
+}
+
+.season-title {
+  font-size: 1.3rem;
+  font-weight: 600;
+  margin-bottom: 10px;
+  color: #0f172a;
+}
+
+.season-description {
+  color: #475569;
+  line-height: 1.6;
+}
+
+/* Attractions */
+.attractions-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 20px;
+  margin-top: 20px;
+}
+
+.attraction-item {
+  background-color: #f8fafc;
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+}
+
+.attraction-title {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #0ea5e9;
+  margin-bottom: 10px;
+}
+
+.attraction-description {
+  color: #475569;
+  line-height: 1.6;
+}
+
+/* Itinerary */
+.itinerary-timeline {
+  position: relative;
+  margin-left: 20px;
+  padding-left: 30px;
+}
+
+.itinerary-timeline::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background-color: #e2e8f0;
+}
+
+.itinerary-day {
+  position: relative;
+  margin-bottom: 30px;
+}
+
+.day-marker {
+  position: absolute;
+  left: -50px;
+  top: 0;
+  width: 50px;
+  height: 50px;
+  background-color: #0ea5e9;
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  z-index: 2;
+  font-size: 0.9rem;
+  line-height: 1.2;
+}
+
+.day-content {
+  background-color: #f8fafc;
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+}
+
+.day-title {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #0f172a;
+  margin-bottom: 10px;
+}
+
+.day-description {
+  color: #475569;
+  line-height: 1.6;
+}
+
+/* Sidebar */
+.tour-sidebar {
+  position: sticky;
+  top: 20px;
+}
+
+.price-card, .tips-card, .help-card {
+  background-color: #f8fafc;
+  border-radius: 10px;
+  padding: 25px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+  margin-bottom: 20px;
+}
+
+.price-value {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #0ea5e9;
+  margin-bottom: 5px;
+}
+
+.price-per {
+  color: #64748b;
+  margin-bottom: 20px;
+}
+
+.btn-book {
+  width: 100%;
+  padding: 12px;
+  font-weight: 600;
+  font-size: 1.1rem;
+}
+
+.tips-title, .help-title {
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: #0f172a;
+  margin-bottom: 15px;
+}
+
+.tips-list {
+  list-style: none;
+  padding: 0;
+}
+
+.tips-list li {
+  margin-bottom: 15px;
+  color: #475569;
+  line-height: 1.6;
+}
+
+.tips-list li strong {
+  color: #0f172a;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 992px) {
+  .tour-sidebar {
+    position: static;
+    margin-top: 30px;
+  }
+  
+  .tour-title {
+    font-size: 2.5rem;
+  }
+  
+  .tour-hero {
+    height: 400px;
+  }
+}
+
+@media (max-width: 768px) {
+  .tour-title {
+    font-size: 2rem;
+  }
+  
+  .tour-hero {
+    height: 350px;
+  }
+  
+  .tour-meta {
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  .attractions-list {
+    grid-template-columns: 1fr;
+  }
+}

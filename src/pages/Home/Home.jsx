@@ -9,7 +9,7 @@ import Gallery from "../../components/Gallery/Gallery";
 import Cards from "../../components/Cards/Cards";
 import PopularCard from "../../components/Cards/PopularCard";
 
-import ImageGallery from "../../components/ImageMemory/ImageGallery";
+// import ImageGallery from "../../components/ImageMemory/ImageGallery";
 
 import { destinationsData, popularsData } from "../../utils/data";
 import "slick-carousel/slick/slick.css";
@@ -48,6 +48,8 @@ const Home = () => {
       <Banner />
       <AdvanceSearch />
       <Features />
+
+      {/* Admin Login Section removed */}
 
       {/* Top Destinations */}
       <section className="tours_section slick_slider">
@@ -100,7 +102,7 @@ const Home = () => {
               <h5 className="title">Plan Your Next Adventure</h5>
               <h2 className="heading">Ready to Create Unforgettable Memories?</h2>
               <p className="text">
-                 Discover breathtaking destinations and unique experiences that you'll cherish for a lifetime. Start your journey with us today!
+                Discover breathtaking destinations and unique experiences that you'll cherish for a lifetime. Start your journey with us today!
               </p>
             </Col>
             <Col md="4" className="text-center mt-3 mt-md-0">
@@ -143,7 +145,7 @@ const Home = () => {
           </Row>
           <Row>
             <Col md="12">
-              <ImageGallery />
+              {/* <ImageGallery /> */}
             </Col>
           </Row>
         </Container>

@@ -1,10 +1,12 @@
-
+import ScrollToTop from "./components/Common/ScrollToTop/ScrollToTop";
 import { Routes, Route } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
 
 import Header from "./components/Common/Header/Header";
 import Footer from "./components/Common/Footer/Footer";
+import ProtectedRoute from "./components/Common/ProtectedRoute/ProtectedRoute";
+import { AuthProvider } from "./context/AuthContext";
 
 import Home from "./pages/Home/Home";
 import ImageUpload from "./components/ImageMemory/ImageUpload";
@@ -17,14 +19,18 @@ import Activities from "./pages/Activities/Activities";
 import News from "./pages/News/News";
 import Destination from "./pages/Destination/Destination";
 import TourListings from "./pages/TourListings/TourListings";
+import TourDetail from "./pages/TourDetail/TourDetail";
 import BookNow from "./pages/BookNow/BookNow";
 import TermsConditionsPage from "./pages/TermsConditions/TermsConditions";
 import PrivacyPolicyPage from "./pages/PrivacyPolicy/PrivacyPolicy";
+import RefundPolicy from "./pages/refundPolicy/refundPolicy";
+import Admin from "./pages/Admin/Admin";
 
 function App() {
   return (
-    <>
+    <AuthProvider>
       <Header />
+       <ScrollToTop /> 
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/upload" element={<ImageUpload />} />
@@ -37,12 +43,16 @@ function App() {
         <Route path="/news" element={<News />} />
         <Route path="/destination" element={<Destination />} />
         <Route path="/tour-listings" element={<TourListings />} />
+        <Route path="/tour/:tourId" element={<TourDetail />} />
         <Route path="/book-now" element={<BookNow />} />
         <Route path="/terms" element={<TermsConditionsPage />} />
         <Route path="/privacy" element={<PrivacyPolicyPage />} />
+        <Route path="/refund" element={<RefundPolicy />} />
+
+        <Route path="/admin" element={<ProtectedRoute><Admin /></ProtectedRoute>} />
       </Routes>
       <Footer />
-    </>
+    </AuthProvider>
   );
 }
 

@@ -1,0 +1,68 @@
+.book-now-section {
+  padding: 40px 20px;
+  background: url("../../assets/images/BookNow/booknow.jpg") no-repeat center center/cover;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+/* Glass effect form */
+.book-now-form {
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(12px);
+  border-radius: 15px;
+  padding: 25px;
+  width: 100%;
+  max-width: 450px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+  color: white;
+}
+
+.book-now-title {
+  text-align: center;
+  font-size: 2rem;
+  font-weight: bold;
+  color: white;
+  margin-bottom: 20px;
+}
+
+.book-now-form label {
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.form-control {
+  border-radius: 8px;
+  border: none;
+  padding: 10px;
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, #ff7b00, #ff4500);
+  border: none;
+  border-radius: 8px;
+  padding: 12px;
+  font-size: 16px;
+  font-weight: bold;
+  transition: all 0.3s ease-in-out;
+}
+
+.btn-primary:hover {
+  background: linear-gradient(135deg, #ff9f4d, #ff6347);
+  transform: translateY(-2px);
+}
+
+/* Responsive */
+@media (max-width: 576px) {
+  .book-now-section {
+    padding: 20px;
+    min-height: auto;
+  }
+  .book-now-form {
+    padding: 15px;
+  }
+  .book-now-title {
+    font-size: 1.5rem;
+  }
+}

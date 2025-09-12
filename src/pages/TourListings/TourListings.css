@@ -240,6 +240,52 @@
   color: #555;
 }
 
+/* Himachal Pradesh Destinations Styles */
+.himachal-card {
+  border-radius: 12px;
+  overflow: hidden;
+  transition: transform 0.3s ease;
+  background: #fff8e6; /* light amber background */
+}
+.himachal-card:hover {
+  transform: scale(1.05);
+}
+.himachal-img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  border-bottom: 1px solid #e6d9b8;
+}
+.himachal-content h5 {
+  color: #d97706; /* amber-600 */
+}
+.himachal-content p {
+  font-size: 0.9rem;
+  color: #555;
+}
+
+/* Shimla Detailed Section Styles */
+.shimla-detailed-section {
+  background-color: #fffbf0 !important;
+  border-left: 4px solid #d97706;
+}
+.shimla-detailed-section h3 {
+  font-size: 1.5rem;
+}
+.shimla-detailed-section p {
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: #4b5563;
+}
+.shimla-detailed-section .list-group-item {
+  padding: 0.5rem 0;
+  border: none;
+  border-bottom: 1px dashed #e5e7eb;
+}
+.shimla-detailed-section strong {
+  color: #b45309; /* amber-700 */
+}
+
 /* Filter buttons */
 .filter-buttons .filter-btn {
   margin: 0 8px;
