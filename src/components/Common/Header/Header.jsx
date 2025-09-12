@@ -86,7 +86,7 @@ const Header = () => {
           <Navbar.Brand>
             <NavLink to="/" className="d-flex align-items-center">
               <img src={logo} alt="Northern Indian Trip Logo" className="logo-img me-2" />
-              NorthernIndianTrip
+              Northern India Trip
             </NavLink>
           </Navbar.Brand>
 
