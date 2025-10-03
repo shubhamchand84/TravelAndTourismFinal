@@ -14,7 +14,7 @@ const TravelPackages = () => {
     tags: '',
     minPrice: '',
     maxPrice: '',
-    sortBy: 'createdAt',
+    sortBy: '',
     sortOrder: 'desc'
   });
   const [pagination, setPagination] = useState({
@@ -33,15 +33,37 @@ const TravelPackages = () => {
       setLoading(true);
       const params = new URLSearchParams();
       
-      // Add filters to params
+      // Add filters to params (excluding sortBy and sortOrder for special handling)
       Object.entries(filters).forEach(([key, value]) => {
-        if (value) params.append(key, value);
+        if (value && key !== 'sortBy' && key !== 'sortOrder') {
+          params.append(key, value);
+        }
       });
+      
+      // Handle sorting
+      if (filters.sortBy) {
+        if (filters.sortBy.startsWith('-')) {
+          // Handle negative sorting (e.g., "-price" for high to low)
+          params.append('sortBy', filters.sortBy.substring(1));
+          params.append('sortOrder', 'desc');
+        } else {
+          params.append('sortBy', filters.sortBy);
+          params.append('sortOrder', 'asc');
+        }
+      } else {
+        // Default sorting if none selected
+        params.append('sortBy', 'createdAt');
+        params.append('sortOrder', 'desc');
+      }
       
       params.append('page', pagination.currentPage);
       params.append('limit', pagination.itemsPerPage);
 
-      const response = await axios.get(createApiUrl(`/travel-packages?${params}`));
+      const apiUrl = createApiUrl(`/travel-packages?${params}`);
+      console.log('Fetching packages with URL:', apiUrl);
+      console.log('Current filters:', filters);
+      
+      const response = await axios.get(apiUrl);
       
       if (response.data.success) {
         setPackages(response.data.data.packages);
@@ -73,7 +95,7 @@ const TravelPackages = () => {
       tags: '',
       minPrice: '',
       maxPrice: '',
-      sortBy: 'createdAt',
+      sortBy: '',
       sortOrder: 'desc'
     });
     setPagination(prev => ({ ...prev, currentPage: 1 }));
@@ -85,9 +107,9 @@ const TravelPackages = () => {
   };
 
   const formatCurrency = (amount) => {
-    return new Intl.NumberFormat('en-US', {
+    return new Intl.NumberFormat('en-IN', {
       style: 'currency',
-      currency: 'USD'
+      currency: 'INR'
     }).format(amount);
   };
 
@@ -160,7 +182,7 @@ const TravelPackages = () => {
                       name="search"
                       value={filters.search}
                       onChange={handleFilterChange}
-                      placeholder="Search destinations..."
+                      placeholder="Search by destination, city, or package name..."
                     />
                   </InputGroup>
                 </Col>
@@ -172,7 +194,7 @@ const TravelPackages = () => {
                     name="tags"
                     value={filters.tags}
                     onChange={handleFilterChange}
-                    placeholder="adventure, beach..."
+                    placeholder="Enter tags like adventure, beach, mountains, cultural..."
                   />
                 </Col>
                 
@@ -183,7 +205,7 @@ const TravelPackages = () => {
                     name="minPrice"
                     value={filters.minPrice}
                     onChange={handleFilterChange}
-                    placeholder="$0"
+                    placeholder="Enter minimum price (e.g., ₹5000)"
                     min="0"
                   />
                 </Col>
@@ -195,7 +217,7 @@ const TravelPackages = () => {
                     name="maxPrice"
                     value={filters.maxPrice}
                     onChange={handleFilterChange}
-                    placeholder="$10000"
+                    placeholder="Enter maximum price (e.g., ₹50000)"
                     min="0"
                   />
                 </Col>
@@ -204,9 +226,11 @@ const TravelPackages = () => {
                   <Form.Label className="fw-semibold">Sort By</Form.Label>
                   <Form.Select
                     name="sortBy"
-                    value={filters.sortBy}
+                    value={filters.sortBy || ""}
                     onChange={handleFilterChange}
+                    required
                   >
+                    <option value="">Choose how to sort packages...</option>
                     <option value="createdAt">Newest First</option>
                     <option value="price">Price: Low to High</option>
                     <option value="-price">Price: High to Low</option>

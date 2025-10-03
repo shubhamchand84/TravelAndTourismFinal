@@ -196,9 +196,9 @@ const TravelAdmin = () => {
 
 
   const formatCurrency = (amount) => {
-    return new Intl.NumberFormat('en-US', {
+    return new Intl.NumberFormat('en-IN', {
       style: 'currency',
-      currency: 'USD'
+      currency: 'INR'
     }).format(amount);
   };
 
@@ -283,7 +283,7 @@ const TravelAdmin = () => {
                         name="title"
                         value={packageForm.title}
                         onChange={handlePackageFormChange}
-                        placeholder="Package title"
+                        placeholder="Enter package title (e.g., 'Golden Triangle Tour')"
                         required
                       />
                     </Form.Group>
@@ -295,18 +295,18 @@ const TravelAdmin = () => {
                         name="subtitle"
                         value={packageForm.subtitle}
                         onChange={handlePackageFormChange}
-                        placeholder="Package subtitle"
+                        placeholder="Enter subtitle (e.g., 'Delhi - Agra - Jaipur')"
                       />
                     </Form.Group>
 
                     <Form.Group className="mb-3">
-                      <Form.Label>Price ($) *</Form.Label>
+                      <Form.Label>Price (₹) *</Form.Label>
                       <Form.Control
                         type="number"
                         name="price"
                         value={packageForm.price}
                         onChange={handlePackageFormChange}
-                        placeholder="0.00"
+                        placeholder="Enter price (e.g., 25000)"
                         step="0.01"
                         min="0"
                         required
@@ -322,8 +322,12 @@ const TravelAdmin = () => {
                             name="startDate"
                             value={packageForm.startDate}
                             onChange={handlePackageFormChange}
+                            placeholder="Start date"
                             required
                           />
+                          <Form.Text className="text-muted">
+                            Select the package start date
+                          </Form.Text>
                         </Form.Group>
                       </Col>
                       <Col>
@@ -334,8 +338,12 @@ const TravelAdmin = () => {
                             name="endDate"
                             value={packageForm.endDate}
                             onChange={handlePackageFormChange}
+                            placeholder="End date"
                             required
                           />
+                          <Form.Text className="text-muted">
+                            Select the package end date
+                          </Form.Text>
                         </Form.Group>
                       </Col>
                     </Row>
@@ -374,7 +382,7 @@ const TravelAdmin = () => {
                         name="tags"
                         value={packageForm.tags}
                         onChange={handlePackageFormChange}
-                        placeholder="adventure, beach, mountains (comma-separated)"
+                        placeholder="Enter tags: adventure, beach, mountains, cultural, family-friendly"
                       />
                     </Form.Group>
 

@@ -47,6 +47,17 @@
   border-bottom: 1px solid #e9ecef;
 }
 
+/* Select placeholder styling */
+.form-select option[value=""][disabled] {
+  color: #6c757d !important;
+  font-style: italic;
+}
+
+.form-select:invalid {
+  color: #6c757d;
+  font-style: italic;
+}
+
 .filters-section .card {
   border-radius: 15px;
 }

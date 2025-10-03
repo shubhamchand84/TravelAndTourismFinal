@@ -87,6 +87,55 @@
   box-shadow: 0 0 0 0.2rem rgba(102, 126, 234, 0.25);
 }
 
+/* Placeholder styling */
+.form-control::placeholder {
+  color: #6c757d !important;
+  opacity: 1 !important;
+  font-style: italic;
+}
+
+.form-control::-webkit-input-placeholder {
+  color: #6c757d !important;
+  opacity: 1 !important;
+  font-style: italic;
+}
+
+.form-control::-moz-placeholder {
+  color: #6c757d !important;
+  opacity: 1 !important;
+  font-style: italic;
+}
+
+.form-control:-ms-input-placeholder {
+  color: #6c757d !important;
+  opacity: 1 !important;
+  font-style: italic;
+}
+
+/* Date input placeholder styling */
+.form-control[type="date"]:invalid {
+  color: #6c757d;
+  font-style: italic;
+}
+
+.form-control[type="date"]:invalid::-webkit-datetime-edit {
+  color: #6c757d;
+  font-style: italic;
+}
+
+.form-control[type="date"]:focus:invalid {
+  color: #495057;
+  font-style: normal;
+}
+
+/* Custom date placeholder */
+.form-control[type="date"]:not(:focus):invalid::before {
+  content: attr(placeholder);
+  color: #6c757d;
+  font-style: italic;
+  margin-right: 0.5em;
+}
+
 .btn {
   border-radius: 10px;
   font-weight: 600;
