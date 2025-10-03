@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { Container, Row, Col, Card, Badge, Button } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
+import axios from 'axios';
+import { createApiUrl } from '../../config/api';
 import './LatestPackages.css';
 
 const LatestPackages = () => {
@@ -8,9 +10,26 @@ const LatestPackages = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    // Load packages from localStorage (demo mode)
-    const loadPackages = () => {
+    // Load packages from API (production) with fallback to localStorage (demo mode)
+    const loadPackages = async () => {
       try {
+        setLoading(true);
+        
+        // Try to fetch from API first
+        try {
+          const response = await axios.get(createApiUrl('/travel-packages'), {
+            params: { limit: 6, sortBy: 'createdAt', sortOrder: 'desc' }
+          });
+          
+          if (response.data.success && response.data.data.packages.length > 0) {
+            setPackages(response.data.data.packages);
+            return;
+          }
+        } catch (apiError) {
+          console.log('API fetch failed, trying localStorage fallback:', apiError.message);
+        }
+        
+        // Fallback to localStorage for demo mode
         const savedPackages = localStorage.getItem('demoPackages');
         if (savedPackages) {
           const parsedPackages = JSON.parse(savedPackages);
@@ -137,15 +156,21 @@ const LatestPackages = () => {
               </Row>
 
               <Row>
-                {packages.map((pkg, index) => (
-                  <Col lg={4} md={6} key={pkg.id} className="mb-4">
+                {packages.map((pkg, index) => {
+                  // Handle both API format and localStorage format
+                  const packageId = pkg._id || pkg.id;
+                  const imageUrl = pkg.image?.url || pkg.imagePreview;
+                  const packagePrice = pkg.price;
+                  
+                  return (
+                  <Col lg={4} md={6} key={packageId} className="mb-4">
                     <Card className="package-card h-100">
                       {/* Package Image */}
                       <div className="package-image-container">
-                        {pkg.imagePreview ? (
+                        {imageUrl ? (
                           <Card.Img
                             variant="top"
-                            src={pkg.imagePreview}
+                            src={imageUrl}
                             alt={pkg.title}
                             className="package-image"
                           />
@@ -158,7 +183,7 @@ const LatestPackages = () => {
                         
                         {/* Price Badge */}
                         <div className="price-badge">
-                          <span className="price-amount">${pkg.price}</span>
+                          <span className="price-amount">₹{packagePrice}</span>
                         </div>
 
                         {/* New Badge for recently added packages */}
@@ -221,7 +246,8 @@ const LatestPackages = () => {
                       </Card.Body>
                     </Card>
                   </Col>
-                ))}
+                  );
+                })}
               </Row>
 
               {/* Call to Action */}

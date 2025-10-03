@@ -4,6 +4,8 @@ import { NavLink, useLocation } from "react-router-dom";
 import "../Header/header.css";
 import logo from "../../../assets/images/logo/logo.jpg"; // Adjust this path if needed
 import { useAuth } from "../../../context/AuthContext"; // Import auth context
+import axios from 'axios';
+import { createApiUrl } from '../../../config/api';
 
 const Header = () => {
   const [open, setOpen] = useState(false);
@@ -130,12 +132,18 @@ const Header = () => {
                 className="btn btn-sm btn-warning me-2"
                 onClick={async () => {
                   try {
+                    console.log('Attempting admin login...');
                     const success = await login('admin', 'admin123');
                     if (success) {
-                      // Login successful
+                      console.log('Login successful!');
+                      alert('Login successful!');
+                    } else {
+                      console.log('Login failed');
+                      alert('Login failed - check console for details');
                     }
                   } catch (error) {
-                    // Login failed
+                    console.error('Login error:', error);
+                    alert('Login error: ' + error.message);
                   }
                 }}
               >
@@ -143,6 +151,31 @@ const Header = () => {
               </button>
             )}
 
+            {/* Debug API Button */}
+            <button 
+              className="btn btn-sm btn-info me-2"
+              onClick={async () => {
+                try {
+                  console.log('Testing API connection...');
+                  console.log('API URL:', createApiUrl('/auth/login'));
+                  
+                  const res = await axios.post(createApiUrl('/auth/login'), {
+                    username: 'admin',
+                    password: 'admin123'
+                  });
+                  
+                  console.log('Raw API Response:', res);
+                  console.log('Response Data:', res.data);
+                  alert('API Test Success! Check console for details.');
+                } catch (error) {
+                  console.error('API Test Error:', error);
+                  console.error('Error Response:', error.response?.data);
+                  alert('API Test Failed: ' + (error.response?.data?.message || error.message));
+                }
+              }}
+            >
+              Test API
+            </button>
 
             {/* User Profile and Logout */}
             {isAuthenticated && (

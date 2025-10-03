@@ -26,12 +26,15 @@ export const AuthProvider = ({ children }) => {
           headers: { 'x-auth-token': token }
         });
         
-        if (res.data.isValid) {
+        console.log('Auth verification response:', res.data);
+        
+        if (res.data.isValid && res.data.user) {
           console.log('Auth verification successful:', res.data);
-          // Ensure isAdmin is properly set as a boolean
+          // Safely handle user data with fallbacks
           const userData = {
-            ...res.data.user,
-            isAdmin: res.data.user.isAdmin === true
+            id: res.data.user.id || '1',
+            username: res.data.user.username || 'admin',
+            isAdmin: res.data.user.isAdmin === true || false
           };
           console.log('Setting user with admin status:', userData);
           setUser(userData);
@@ -42,6 +45,7 @@ export const AuthProvider = ({ children }) => {
         }
       } catch (err) {
         console.error('Auth verification error:', err);
+        console.error('Error details:', err.response?.data || err.message);
         localStorage.removeItem('token');
       } finally {
         setLoading(false);
@@ -59,11 +63,23 @@ export const AuthProvider = ({ children }) => {
         password
       });
       
+      console.log('Login response:', res.data);
+      
+      // Handle different response structures
       const { token, user } = res.data;
+      
+      if (!token) {
+        console.error('No token received from login');
+        return false;
+      }
+      
+      // Safely handle user data with fallbacks
       const userData = {
-        ...user,
-        isAdmin: user.isAdmin === true
+        id: user?.id || '1',
+        username: user?.username || username,
+        isAdmin: user?.isAdmin === true || false
       };
+      
       console.log('Admin login successful, user data:', userData);
       localStorage.setItem('token', token);
       setUser(userData);
@@ -71,6 +87,7 @@ export const AuthProvider = ({ children }) => {
       return true;
     } catch (err) {
       console.error('Admin login failed:', err);
+      console.error('Error details:', err.response?.data || err.message);
       return false;
     }
   };
