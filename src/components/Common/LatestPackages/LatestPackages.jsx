@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Dropdown, Nav } from 'react-bootstrap';
 import axios from 'axios';
-import { createApiUrl } from '../../config/api';
+import { createApiUrl } from '../../../config/api';
 import './LatestPackages.css';
 
 const LatestPackages = () => {
