@@ -9,7 +9,6 @@ import ProtectedRoute from "./components/Common/ProtectedRoute/ProtectedRoute";
 import { AuthProvider } from "./context/AuthContext";
 
 import Home from "./pages/Home/Home";
-import ImageUpload from "./components/ImageMemory/ImageUpload";
 
 // Import new pages
 import About from "./pages/About/About";
@@ -45,7 +44,6 @@ function App() {
       <ScrollToTop />
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/upload" element={<ImageUpload />} />
 
         {/* New Routes */}
         <Route path="/about" element={<About />} />
