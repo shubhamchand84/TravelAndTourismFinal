@@ -13,7 +13,12 @@ const app = express();
 const server = http.createServer(app);
 const io = new Server(server, { 
   cors: { 
-    origin: ['http://localhost:3000', 'http://localhost:3001'],
+    origin: [
+      'http://localhost:3000', 
+      'http://localhost:3001',
+      'https://travelandtourismfinal-1.onrender.com',
+      'https://travelandtourismfinal.onrender.com'
+    ],
     credentials: true 
   },
   path: "/socket.io/"
@@ -32,7 +37,12 @@ const supportRoutes = require("./routes/support");
 const travelPackageRoutes = require("./routes/travelPackages");
 
 app.use(cors({
-  origin: ['http://localhost:3000', 'http://localhost:3001'],
+  origin: [
+    'http://localhost:3000', 
+    'http://localhost:3001',
+    'https://travelandtourismfinal-1.onrender.com',
+    'https://travelandtourismfinal.onrender.com'
+  ],
   credentials: true
 }));
 app.use(express.json({ limit: '10mb' }));
