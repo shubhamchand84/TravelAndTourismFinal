@@ -1,5 +1,6 @@
-import React, { createContext, useState, useContext, useEffect } from 'react';
+import React, { createContext, useContext, useState, useEffect } from 'react';
 import axios from 'axios';
+import { createApiUrl } from '../config/api';
 
 const AuthContext = createContext();
 
@@ -21,7 +22,7 @@ export const AuthProvider = ({ children }) => {
       }
       
       try {
-        const res = await axios.get('http://localhost:5001/api/auth/verify', {
+        const res = await axios.get(createApiUrl('/auth/verify'), {
           headers: { 'x-auth-token': token }
         });
         
@@ -53,7 +54,7 @@ export const AuthProvider = ({ children }) => {
   // Login function - admin only
   const login = async (username, password) => {
     try {
-      const res = await axios.post('http://localhost:5001/api/auth/login', {
+      const res = await axios.post(createApiUrl('/auth/login'), {
         username,
         password
       });

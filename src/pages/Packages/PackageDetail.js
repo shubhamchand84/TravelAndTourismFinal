@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import { useParams, Link, useNavigate } from 'react-router-dom';
-import { Container, Row, Col, Card, Button, Badge, Alert, Spinner, Form } from 'react-bootstrap';
+import { useParams, useNavigate } from 'react-router-dom';
+import { Container, Row, Col, Card, Button, Form, Alert } from 'react-bootstrap';
 import { useAuth } from '../../context/AuthContext';
 import axios from 'axios';
+import { createApiUrl } from '../../config/api';
+import './PackageDetail.css';
 
 const PackageDetail = () => {
   const { id } = useParams();
@@ -26,7 +28,7 @@ const PackageDetail = () => {
 
   const fetchPackageDetails = async () => {
     try {
-      const res = await axios.get(`http://localhost:5001/api/packages/${id}`);
+      const res = await axios.get(createApiUrl(`/packages/${id}`));
       setPackageData(res.data);
     } catch (err) {
       setError('Package not found');
@@ -37,7 +39,7 @@ const PackageDetail = () => {
 
   const fetchReviews = async () => {
     try {
-      const res = await axios.get(`http://localhost:5001/api/reviews/package/${id}`);
+      const res = await axios.get(createApiUrl(`/reviews/package/${id}`));
       setReviews(res.data);
     } catch (err) {
       console.error('Error fetching reviews:', err);
@@ -62,7 +64,7 @@ const PackageDetail = () => {
         price: packageData.basePrice
       };
 
-      const res = await axios.post('http://localhost:5001/api/bookings', bookingPayload, {
+      const res = await axios.post(createApiUrl('/bookings'), bookingPayload, {
         headers: { 'x-auth-token': token }
       });
 

@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { Navigate } from 'react-router-dom';
+import { useAuth } from '../../../context/AuthContext';
 import axios from 'axios';
+import { createApiUrl } from '../../../config/api';
 
 const ProtectedRoute = ({ children }) => {
   const [isAuthenticated, setIsAuthenticated] = useState(null);
@@ -8,14 +10,14 @@ const ProtectedRoute = ({ children }) => {
   useEffect(() => {
     const verifyAuth = async () => {
       const token = localStorage.getItem('token');
-
+      
       if (!token) {
         setIsAuthenticated(false);
         return;
       }
 
       try {
-        const res = await axios.get('http://localhost:5001/api/auth/verify', {
+        const res = await axios.get(createApiUrl('/auth/verify'), {
           headers: { 'x-auth-token': token }
         });
 

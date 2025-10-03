@@ -1,12 +1,15 @@
 import React, { useState, useEffect } from 'react';
-import { Container, Row, Col, Card, Button, Form, Alert, Badge, Table } from 'react-bootstrap';
-import axios from 'axios';
+import { Container, Row, Col, Card, Button, Form, Table, Modal, Alert, Badge, Spinner } from 'react-bootstrap';
 import { useAuth } from '../../context/AuthContext';
+import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
+import { createApiUrl } from '../../config/api';
 import './TravelAdmin.css';
 
 const TravelAdmin = () => {
   const { isAuthenticated } = useAuth();
   const [packages, setPackages] = useState([]);
+  const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
   const [success, setSuccess] = useState('');
@@ -46,7 +49,7 @@ const TravelAdmin = () => {
         return;
       }
 
-      const response = await axios.get('http://localhost:5001/api/travel-packages/admin/all', {
+      const response = await axios.get(createApiUrl('/travel-packages/admin/all'), {
         headers: { 'x-auth-token': token }
       });
       
@@ -72,7 +75,7 @@ const TravelAdmin = () => {
   const fetchStats = async () => {
     try {
       const token = localStorage.getItem('token');
-      const packagesRes = await axios.get('http://localhost:5001/api/travel-packages/admin/all', {
+      const packagesRes = await axios.get(createApiUrl('/travel-packages/admin/all'), {
         headers: { 'x-auth-token': token }
       });
 
@@ -122,7 +125,7 @@ const TravelAdmin = () => {
         }
       });
 
-      const response = await axios.post('http://localhost:5001/api/travel-packages', formData, {
+      const response = await axios.post(createApiUrl('/travel-packages'), formData, {
         headers: {
           'x-auth-token': token,
           'Content-Type': 'multipart/form-data'
@@ -175,7 +178,7 @@ const TravelAdmin = () => {
 
     try {
       const token = localStorage.getItem('token');
-      const response = await axios.delete(`http://localhost:5001/api/travel-packages/${packageId}`, {
+      const response = await axios.delete(createApiUrl(`/travel-packages/${packageId}`), {
         headers: { 'x-auth-token': token }
       });
 

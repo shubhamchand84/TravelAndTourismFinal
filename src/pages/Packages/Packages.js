@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import { Container, Row, Col, Card, Form, Button, Badge } from 'react-bootstrap';
+import { Container, Row, Col, Card, Button, Form, Pagination } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
+import { createApiUrl } from '../../config/api';
+import './Packages.css';
 
 const Packages = () => {
   const [packages, setPackages] = useState([]);
@@ -37,7 +39,7 @@ const Packages = () => {
       params.append('page', pagination.page);
       params.append('limit', 9);
 
-      const res = await axios.get(`http://localhost:5001/api/packages?${params}`);
+      const res = await axios.get(createApiUrl(`/packages?${params}`));
       setPackages(res.data.packages);
       setPagination({
         page: res.data.page,

@@ -1,7 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import { Container, Row, Col, Card, Form, Button, Alert, Tab, Tabs } from 'react-bootstrap';
+import { Container, Row, Col, Card, Form, Button, Tab, Tabs, Badge, Alert } from 'react-bootstrap';
 import { useAuth } from '../../context/AuthContext';
+import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import { createApiUrl } from '../../config/api';
+import './Profile.css';
 
 const Profile = () => {
   const { user, isAuthenticated } = useAuth();
@@ -31,7 +34,7 @@ const Profile = () => {
   const fetchUserProfile = async () => {
     try {
       const token = localStorage.getItem('token');
-      const res = await axios.get('http://localhost:5001/api/users/me', {
+      const res = await axios.get(createApiUrl('/users/me'), {
         headers: { 'x-auth-token': token }
       });
       setProfileData(res.data);
@@ -44,7 +47,7 @@ const Profile = () => {
   const fetchBookings = async () => {
     try {
       const token = localStorage.getItem('token');
-      const res = await axios.get('http://localhost:5001/api/bookings', {
+      const res = await axios.get(createApiUrl('/bookings'), {
         headers: { 'x-auth-token': token }
       });
       setBookings(res.data);
@@ -60,7 +63,7 @@ const Profile = () => {
 
     try {
       const token = localStorage.getItem('token');
-      await axios.put('http://localhost:5001/api/users/me', {
+      await axios.put(createApiUrl('/users/me'), {
         name: profileData.name,
         preferences: profileData.preferences
       }, {

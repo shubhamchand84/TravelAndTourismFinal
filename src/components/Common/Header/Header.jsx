@@ -107,10 +107,10 @@ const Header = () => {
                   </NavLink>
                 ))}
                 
-                {/* Admin Link for Mobile */}
+                {/* Admin Link */}
                 {isAuthenticated && userIsAdmin && (
                   <NavLink
-                    className="nav-link admin-mobile-link"
+                    className="nav-link admin-link"
                     to="/travel-admin"
                     onClick={closeMenu}
                   >
@@ -143,17 +143,6 @@ const Header = () => {
               </button>
             )}
 
-            {/* Admin Button - Show only if authenticated and admin */}
-            {isAuthenticated && userIsAdmin && (
-              <NavLink 
-                className="adminBtn d-none d-sm-inline-block me-3" 
-                to="/travel-admin"
-                title="Admin Dashboard"
-              >
-                <i className="bi bi-gear-fill me-2"></i>
-                Admin
-              </NavLink>
-            )}
 
             {/* User Profile and Logout */}
             {isAuthenticated && (

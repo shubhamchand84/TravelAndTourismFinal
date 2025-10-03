@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { Container, Row, Col, Card, Badge, Button, Form, InputGroup } from 'react-bootstrap';
+import { Container, Row, Col, Card, Badge, Button, Form, Pagination, Spinner, Alert } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
+import { createApiUrl } from '../../config/api';
 import './TravelPackages.css';
 
 const TravelPackages = () => {
@@ -40,7 +41,7 @@ const TravelPackages = () => {
       params.append('page', pagination.currentPage);
       params.append('limit', pagination.itemsPerPage);
 
-      const response = await axios.get(`http://localhost:5001/api/travel-packages?${params}`);
+      const response = await axios.get(createApiUrl(`/travel-packages?${params}`));
       
       if (response.data.success) {
         setPackages(response.data.data.packages);

@@ -1,5 +1,7 @@
-import React, { useState } from 'react';
-import axios from 'axios';
+import React, { useState } from "react";
+import axios from "axios";
+import { createApiUrl } from "../../config/api";
+import "./ImageUpload.css";
 
 const ImageUpload = ({ onUploadSuccess }) => {
   const [media, setMedia] = useState(null);
@@ -7,7 +9,6 @@ const ImageUpload = ({ onUploadSuccess }) => {
   const [loading, setLoading] = useState(false);
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
     if (!media) return alert("Please choose a file.");
 
     const formData = new FormData();
@@ -16,7 +17,7 @@ const ImageUpload = ({ onUploadSuccess }) => {
 
     try {
       setLoading(true);
-      const res = await axios.post("http://localhost:5001/api/images/upload", formData, {
+      const res = await axios.post(createApiUrl("/images/upload"), formData, {
         headers: { "Content-Type": "multipart/form-data" },
       });
 

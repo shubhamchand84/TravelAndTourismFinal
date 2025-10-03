@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Dropdown, Nav } from 'react-bootstrap';
 import axios from 'axios';
+import { createApiUrl } from '../../config/api';
 import './LatestPackages.css';
 
 const LatestPackages = () => {
@@ -13,7 +14,7 @@ const LatestPackages = () => {
 
   const fetchLatestPackages = async () => {
     try {
-      const res = await axios.get('http://localhost:5001/api/packages?sort=createdAt&limit=6&isActive=true');
+      const res = await axios.get(createApiUrl('/packages?sort=createdAt&limit=6&isActive=true'));
       setPackages(res.data.packages || []);
     } catch (err) {
       console.error('Error fetching latest packages:', err);
