@@ -137,22 +137,15 @@ const Header = () => {
               </button>
             )}
 
-            {/* User Profile and Logout */}
+            {/* Admin Logout */}
             {isAuthenticated && (
-              <>
-                <NavLink 
-                  className="btn btn-sm btn-outline-primary me-2" 
-                  to="/profile"
-                >
-                  Profile ({user?.username || user?.name})
-                </NavLink>
-                <button 
-                  className="btn btn-sm btn-secondary me-2"
-                  onClick={logout}
-                >
-                  Logout
-                </button>
-              </>
+              <button 
+                className="btn btn-sm btn-secondary me-2"
+                onClick={logout}
+              >
+                <i className="bi bi-box-arrow-right me-1"></i>
+                Logout ({user?.username})
+              </button>
             )}
 
 
