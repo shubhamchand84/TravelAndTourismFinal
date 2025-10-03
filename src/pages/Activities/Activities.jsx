@@ -1,5 +1,6 @@
 import React from "react";
 import "./Activities.css"; // optional styling
+import "../../styles/PageLayout.css";
 
 // Local images
 import RaftingImg from "../../assets/images/Activities/Rafting.jpg";
@@ -40,7 +41,7 @@ const activitiesData = [
 
 const Activities = () => {
   return (
-    <div className="container py-5">
+    <div className="container page-container">
       <h2 className="mb-4 text-center text-blue-800 fw-bold">Adventure Activities</h2>
       <p className="lead text-center text-gray-700 mb-5">
         Add more excitement to your Himalayan adventure with these thrilling activities.

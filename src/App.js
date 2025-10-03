@@ -10,7 +10,6 @@ import { AuthProvider } from "./context/AuthContext";
 
 import Home from "./pages/Home/Home";
 import ImageUpload from "./components/ImageMemory/ImageUpload";
-import ImageGallery from "./components/ImageMemory/ImageGallery";
 
 // Import new pages
 import About from "./pages/About/About";
@@ -24,17 +23,29 @@ import BookNow from "./pages/BookNow/BookNow";
 import TermsConditionsPage from "./pages/TermsConditions/TermsConditions";
 import PrivacyPolicyPage from "./pages/PrivacyPolicy/PrivacyPolicy";
 import RefundPolicy from "./pages/refundPolicy/refundPolicy";
-import Admin from "./pages/Admin/Admin";
+
+// User pages
+import Profile from "./pages/Profile/Profile";
+import Packages from "./pages/Packages/Packages";
+import PackageDetail from "./pages/Packages/PackageDetail";
+
+// Demo pages
+import AdminDemo from "./pages/AdminDemo/AdminDemo";
+import LatestPackages from "./pages/LatestPackages/LatestPackages";
+import Demo from "./pages/Demo/Demo";
+
+// New Travel App pages
+import TravelAdmin from "./pages/TravelAdmin/TravelAdmin";
+import TravelPackages from "./pages/TravelPackages/TravelPackages";
 
 function App() {
   return (
     <AuthProvider>
       <Header />
-       <ScrollToTop /> 
+      <ScrollToTop />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/upload" element={<ImageUpload />} />
-        <Route path="/gallery" element={<ImageGallery />} />
 
         {/* New Routes */}
         <Route path="/about" element={<About />} />
@@ -49,7 +60,21 @@ function App() {
         <Route path="/privacy" element={<PrivacyPolicyPage />} />
         <Route path="/refund" element={<RefundPolicy />} />
 
-        <Route path="/admin" element={<ProtectedRoute><Admin /></ProtectedRoute>} />
+        
+        {/* User Routes */}
+        <Route path="/profile" element={<ProtectedRoute><Profile /></ProtectedRoute>} />
+        <Route path="/packages" element={<Packages />} />
+        <Route path="/packages/:id" element={<PackageDetail />} />
+
+        {/* Demo Routes */}
+        <Route path="/demo" element={<Demo />} />
+        <Route path="/admin-demo" element={<AdminDemo />} />
+        <Route path="/latest-packages" element={<LatestPackages />} />
+
+        {/* New Travel App Routes */}
+        <Route path="/travel-admin" element={<ProtectedRoute><TravelAdmin /></ProtectedRoute>} />
+        <Route path="/travel-packages" element={<TravelPackages />} />
+
       </Routes>
       <Footer />
     </AuthProvider>

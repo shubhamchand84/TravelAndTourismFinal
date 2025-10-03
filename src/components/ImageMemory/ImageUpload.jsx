@@ -16,7 +16,7 @@ const ImageUpload = ({ onUploadSuccess }) => {
 
     try {
       setLoading(true);
-      const res = await axios.post("http://localhost:5000/api/images/upload", formData, {
+      const res = await axios.post("http://localhost:5001/api/images/upload", formData, {
         headers: { "Content-Type": "multipart/form-data" },
       });
 

@@ -1,0 +1,74 @@
+/* Common Page Layout Styles */
+
+/* Base page container with navbar clearance */
+.page-container {
+  padding-top: 120px;
+  padding-bottom: 60px;
+}
+
+/* Responsive navbar clearance */
+@media (max-width: 992px) {
+  .page-container {
+    padding-top: 100px;
+    padding-bottom: 50px;
+  }
+}
+
+@media (max-width: 768px) {
+  .page-container {
+    padding-top: 90px;
+    padding-bottom: 40px;
+  }
+}
+
+@media (max-width: 576px) {
+  .page-container {
+    padding-top: 80px;
+    padding-bottom: 30px;
+  }
+}
+
+@media (max-width: 480px) {
+  .page-container {
+    padding-top: 70px;
+    padding-bottom: 25px;
+  }
+}
+
+/* Landscape mobile orientation */
+@media (max-height: 600px) and (orientation: landscape) {
+  .page-container {
+    padding-top: 60px;
+    padding-bottom: 30px;
+  }
+}
+
+/* Page title styling */
+.page-title {
+  margin-bottom: 2rem;
+  text-align: center;
+  font-weight: 700;
+}
+
+.page-subtitle {
+  text-align: center;
+  margin-bottom: 3rem;
+  color: #6c757d;
+}
+
+/* Section spacing */
+.page-section {
+  margin-bottom: 4rem;
+}
+
+@media (max-width: 768px) {
+  .page-section {
+    margin-bottom: 3rem;
+  }
+}
+
+@media (max-width: 576px) {
+  .page-section {
+    margin-bottom: 2rem;
+  }
+}

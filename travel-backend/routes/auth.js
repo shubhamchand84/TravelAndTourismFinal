@@ -11,7 +11,7 @@ dotenv.config();
 const adminUser = {
   id: '1',
   username: 'admin',
-  password: '$2a$10$XFNxG9mYMNIUBw5OqLEbvOlsJ9SFq1jHKcKnqZ.mGNbDUJKiZVvlG', // hashed 'admin123'
+  password: '$2b$10$JnODO7FhStj3OFPrgZ0fDemXIXyQti3MBC/2z0DhZIiTtyxXU1iIu', // Hash for 'admin123'
   isAdmin: true
 };
 
@@ -24,7 +24,7 @@ console.log('Admin user configured:', { id: adminUser.id, username: adminUser.us
 router.post('/login', async (req, res) => {
   const { username, password } = req.body;
   
-  console.log('Login attempt:', { username });
+  console.log('Login attempt:', { username, passwordLength: password?.length });
 
   try {
     // Check if username matches
@@ -33,35 +33,7 @@ router.post('/login', async (req, res) => {
       return res.status(400).json({ message: 'Invalid credentials' });
     }
 
-    // For direct comparison during development/testing
-    if (password === 'admin123') {
-      console.log('Direct password match for development');
-      // Create and sign JWT token
-      const payload = {
-        user: {
-          id: adminUser.id,
-          isAdmin: adminUser.isAdmin
-        }
-      };
-
-      jwt.sign(
-        payload,
-        process.env.JWT_SECRET || 'mysecrettoken',
-        { expiresIn: '1h' },
-        (err, token) => {
-          if (err) throw err;
-          res.json({
-            token,
-            user: {
-              id: adminUser.id,
-              username: adminUser.username,
-              isAdmin: adminUser.isAdmin
-            }
-          });
-        }
-      );
-      return;
-    }
+    // Removed insecure direct password comparison for production security
     
     // Check if password matches using bcrypt
     const isMatch = await bcrypt.compare(password, adminUser.password);
@@ -128,16 +100,6 @@ router.get('/verify', (req, res) => {
   }
 });
 
-// For testing purposes, you can create a hash for a password
-// Uncomment this code to generate a hash for a new password
-/*
-const generateHash = async () => {
-  const salt = await bcrypt.genSalt(10);
-  const hash = await bcrypt.hash('admin123', salt);
-  console.log('Generated hash:', hash);
-};
-
-generateHash();
-*/
+// Hash generation is now handled in initializeAdmin() function above
 
 module.exports = { router };

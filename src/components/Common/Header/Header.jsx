@@ -8,7 +8,7 @@ import { useAuth } from "../../../context/AuthContext"; // Import auth context
 const Header = () => {
   const [open, setOpen] = useState(false);
   const location = useLocation();
-  const { user, isAuthenticated } = useAuth();
+  const { user, isAuthenticated, login, logout } = useAuth();
 
   const toggleMenu = () => {
     setOpen(!open);
@@ -49,34 +49,15 @@ const Header = () => {
     { path: "/tour-listings", label: "TOURS" },
     { path: "/activities", label: "ACTIVITIES" },
     { path: "/destination", label: "DESTINATION" },
-    { path: "/gallery", label: "GALLERY" },
+    { path: "/travel-packages", label: "LATEST PACKAGES" },
     { path: "/contact", label: "CONTACT" },
   ];
   
   // Add admin link conditionally
-  console.log('Checking admin status:', { 
-    isAuthenticated, 
-    user, 
-    userIsAdmin: user?.isAdmin,
-    userIsAdminType: typeof user?.isAdmin,
-    userObject: JSON.stringify(user)
-  });
   
-  // Force boolean evaluation and add admin link if user is admin
+  // Force boolean evaluation for admin status
   const userIsAdmin = Boolean(user?.isAdmin);
-  if (isAuthenticated && userIsAdmin) {
-    console.log('Adding ADMIN link to menu');
-    menuLinks.push({ path: "/admin", label: "ADMIN" });
-  }
   
-  // Log authentication state for debugging
-  console.log('Auth state in Header:', { 
-    isAuthenticated, 
-    user, 
-    userIsAdmin,
-    hasAdminLink: menuLinks.some(link => link.label === "ADMIN"),
-    token: localStorage.getItem('token')
-  });
 
   return (
     <header className={`header-section${!isHome ? " header-black" : ""}`}>
@@ -118,19 +99,81 @@ const Header = () => {
                 {menuLinks.map((link, index) => (
                   <NavLink
                     key={index}
-                    className="nav-link"
+                    className={`nav-link ${link.label === "LATEST PACKAGES" ? "latest-packages-highlight" : ""}`}
                     to={link.path}
                     onClick={closeMenu}
                   >
                     {link.label}
                   </NavLink>
                 ))}
+                
+                {/* Admin Link for Mobile */}
+                {isAuthenticated && userIsAdmin && (
+                  <NavLink
+                    className="nav-link admin-mobile-link"
+                    to="/travel-admin"
+                    onClick={closeMenu}
+                  >
+                    <i className="bi bi-gear-fill me-2"></i>
+                    ADMIN DASHBOARD
+                  </NavLink>
+                )}
               </Nav>
             </Offcanvas.Body>
           </Navbar.Offcanvas>
 
-          {/* Book Now & Mobile Toggle */}
-          <div className="ms-md-4 ms-2">
+          {/* Admin Button & Book Now & Mobile Toggle */}
+          <div className="ms-md-4 ms-2 d-flex align-items-center">
+            {/* Quick Admin Login for Testing */}
+            {!isAuthenticated && (
+              <button 
+                className="btn btn-sm btn-warning me-2"
+                onClick={async () => {
+                  try {
+                    const success = await login('admin', 'admin123');
+                    if (success) {
+                      // Login successful
+                    }
+                  } catch (error) {
+                    // Login failed
+                  }
+                }}
+              >
+                Quick Admin Login
+              </button>
+            )}
+
+            {/* Admin Button - Show only if authenticated and admin */}
+            {isAuthenticated && userIsAdmin && (
+              <NavLink 
+                className="adminBtn d-none d-sm-inline-block me-3" 
+                to="/travel-admin"
+                title="Admin Dashboard"
+              >
+                <i className="bi bi-gear-fill me-2"></i>
+                Admin
+              </NavLink>
+            )}
+
+            {/* User Profile and Logout */}
+            {isAuthenticated && (
+              <>
+                <NavLink 
+                  className="btn btn-sm btn-outline-primary me-2" 
+                  to="/profile"
+                >
+                  Profile ({user?.username || user?.name})
+                </NavLink>
+                <button 
+                  className="btn btn-sm btn-secondary me-2"
+                  onClick={logout}
+                >
+                  Logout
+                </button>
+              </>
+            )}
+
+
             <NavLink className="primaryBtn d-none d-sm-inline-block" to="/book-now">
               Book Now
             </NavLink>

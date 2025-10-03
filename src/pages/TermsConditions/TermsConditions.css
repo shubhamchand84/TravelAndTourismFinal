@@ -139,12 +139,6 @@
   font-weight: 600;
 }
 
-/* Refund Policy Specific Styles */
-.terms-section ul li strong {
-  display: inline-block;
-  margin-bottom: 5px;
-}
-
 .contact-details {
   background: rgba(255, 215, 0, 0.1);
   padding: 25px;

@@ -5,7 +5,6 @@ import Slider from "react-slick";
 import Banner from "../../components/Banner/Banner";
 import AdvanceSearch from "../../components/AdvanceSearch/AdvanceSearch";
 import Features from "../../components/Features/Features";
-import Gallery from "../../components/Gallery/Gallery";
 import Cards from "../../components/Cards/Cards";
 import PopularCard from "../../components/Cards/PopularCard";
 
@@ -115,41 +114,7 @@ const Home = () => {
         <div className="overlay"></div>
       </section>
 
-      {/* Gallery */}
-      <section className="gallery">
-        <Container>
-          <Row>
-            <Col md="12">
-              <div className="main_heading">
-                <h1>Photo Gallery</h1>
-              </div>
-            </Col>
-          </Row>
-          <Row>
-            <Col md="12">
-              <Gallery />
-            </Col>
-          </Row>
-        </Container>
-      </section>
 
-  {/* ✅ Memory Upload + Gallery (Only once now) */}
--      <section className="memory_gallery py-5">
--        <Container>
--          <Row>
--            <Col md="12">
--              <div className="main_heading">
--                <h1>Share Your Travel Memories</h1>
--              </div>
--            </Col>
--          </Row>
--          <Row>
--            <Col md="12">
--              {/* <ImageGallery /> */}
--            </Col>
--          </Row>
--        </Container>
--      </section>
     </>
   );
 };

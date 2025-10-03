@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import 'aos/dist/aos.css';
 import AOS from 'aos';
+import '../../styles/PageLayout.css';
 
 const About = () => {
   useEffect(() => {
@@ -8,7 +9,7 @@ const About = () => {
   }, []);
 
   return (
-    <div className="container py-5">
+    <div className="container page-container">
       <h2
         className="mb-4 text-center text-primary fw-bold"
         data-aos="fade-down"

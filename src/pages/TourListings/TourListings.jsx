@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import { FaMountain } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import "./TourListings.css";
+import "../../styles/PageLayout.css";
 
 // Trek Images (clean imports)
 import aliBedniBugyal from "../../assets/images/populars/Ali-Bedni-Bugyal.webp";
@@ -115,7 +116,7 @@ const TourListings = () => {
       : toursData.filter((tour) => tour.state === selectedState);
 
   return (
-    <div className="container py-5">
+    <div className="container page-container">
       <h2 className="mb-4 text-center text-blue-800 fw-bold">
         Himalayan Trek Listings
       </h2>

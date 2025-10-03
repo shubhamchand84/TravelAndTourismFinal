@@ -39,10 +39,14 @@
 }
 
 .contact-form {
-  flex: 1 1 300px;
-  background-color: rgba(255, 255, 255, 0.1);
-  padding: 30px;
-  border-radius: 15px;
+  flex: 1 1 400px;
+  background: rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+  padding: 35px;
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
 }
 
 .contact-form h3 {
@@ -56,32 +60,107 @@
   gap: 15px;
 }
 
+/* Enhanced Form Styling */
+.inquiry-type-selector {
+  margin-bottom: 20px;
+}
+
+.form-label {
+  display: block;
+  margin-bottom: 8px;
+  color: rgba(255, 255, 255, 0.9);
+  font-weight: 600;
+  font-size: 14px;
+  letter-spacing: 0.3px;
+}
+
+.inquiry-select {
+  width: 100%;
+  padding: 12px 15px;
+  border: 1.5px solid rgba(255, 255, 255, 0.3);
+  border-radius: 12px;
+  font-size: 15px;
+  background: rgba(255, 255, 255, 0.15);
+  color: #fff;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(5px);
+}
+
+.inquiry-select:focus {
+  outline: none;
+  border-color: #ffd700;
+  box-shadow: 0 0 15px rgba(255, 215, 0, 0.3);
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.inquiry-select option {
+  background: #2a2a2a;
+  color: #fff;
+  padding: 10px;
+}
+
 .contact-form input,
 .contact-form textarea {
-  padding: 10px;
-  border: none;
-  border-radius: 8px;
-  font-size: 16px;
-  background-color: rgba(255, 255, 255, 0.1);
+  padding: 12px 15px;
+  border: 1.5px solid rgba(255, 255, 255, 0.3);
+  border-radius: 12px;
+  font-size: 15px;
+  background: rgba(255, 255, 255, 0.15);
   color: #fff;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  backdrop-filter: blur(5px);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1) inset;
+}
+
+.contact-form input::placeholder,
+.contact-form textarea::placeholder {
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 14px;
+}
+
+.contact-form input:focus,
+.contact-form textarea:focus {
+  outline: none;
+  border-color: #ffd700;
+  box-shadow: 0 0 15px rgba(255, 215, 0, 0.3), 0 0 0 2px rgba(255, 215, 0, 0.1);
+  background: rgba(255, 255, 255, 0.2);
+  transform: translateY(-1px);
+}
+
+.date-input {
+  color-scheme: dark;
 }
 
 .contact-form textarea {
-  height: 100px;
-  resize: none;
+  resize: vertical;
+  min-height: 100px;
+  font-family: inherit;
 }
 
-.contact-form button {
-  background-color: #ffd700;
+.submit-btn {
+  background: linear-gradient(135deg, #ffd700 0%, #ffb300 100%);
   border: none;
-  padding: 10px;
-  border-radius: 8px;
-  font-weight: bold;
+  padding: 14px 20px;
+  border-radius: 12px;
+  font-weight: 600;
+  font-size: 16px;
+  color: #1a1a1a;
   cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  box-shadow: 0 6px 20px rgba(255, 215, 0, 0.3);
+  margin-top: 10px;
 }
 
-.contact-form button:hover {
-  background-color: #ffc107;
+.submit-btn:hover {
+  background: linear-gradient(135deg, #ffb300, #ffd700);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(255, 215, 0, 0.4);
+}
+
+.submit-btn:active {
+  transform: translateY(0);
 }
 
 .instagram-icon {
@@ -96,8 +175,14 @@
 }
 
 .success-message {
-  font-size: 18px;
+  font-size: 16px;
   color: #90ee90;
+  background: rgba(144, 238, 144, 0.15);
+  padding: 16px;
+  border-radius: 12px;
+  border: 1px solid rgba(144, 238, 144, 0.3);
+  text-align: center;
+  font-weight: 600;
 }
 
 /* Legal Links Section - Beautiful Styling */

@@ -1,4 +1,5 @@
 import React from 'react';
+import '../../styles/PageLayout.css';
 
 // Import your images
 import hamptaImg from '../../assets/images/treks/hampta.jpg';
@@ -40,7 +41,7 @@ const trekPackages = [
 
 const Destination = () => {
   return (
-    <div className="container py-5">
+    <div className="container page-container">
       <h2 className="mb-4 text-center text-blue-800 font-bold">Trek & Tour Packages</h2>
       <p className="lead text-center mb-4 text-gray-600">
         Explore India’s most iconic treks and travel experiences. All packages include certified guides, meals, and full support for a stress-free adventure.

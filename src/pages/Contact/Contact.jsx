@@ -3,13 +3,18 @@ import { FaInstagram } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 import emailjs from "@emailjs/browser";
 import "./Contact.css";
+import "../../styles/PageLayout.css";
 import backgroundImage from "../../assets/images/contact/background.jpeg";
 
 const Contact = () => {
   const [form, setForm] = useState({
     name: "",
     email: "",
+    phone: "",
+    destination: "",
+    dates: "",
     message: "",
+    inquiryType: "general", // general, booking, custom
   });
 
   const [submitted, setSubmitted] = useState(false);
@@ -37,7 +42,11 @@ const Contact = () => {
     setForm({
       name: "",
       email: "",
+      phone: "",
+      destination: "",
+      dates: "",
       message: "",
+      inquiryType: "general",
     });
   };
 
@@ -86,14 +95,31 @@ const Contact = () => {
           <h3>Send a Message</h3>
           {submitted ? (
             <div className="success-message">
-              Thank you! Your message has been sent. We'll be in touch.
+              <i className="bi bi-check-circle me-2"></i>
+              Thank you! Your message has been sent. We'll be in touch soon.
             </div>
           ) : (
             <form onSubmit={handleSubmit}>
+              {/* Inquiry Type Selector */}
+              <div className="inquiry-type-selector">
+                <label className="form-label">What can we help you with?</label>
+                <select
+                  name="inquiryType"
+                  value={form.inquiryType}
+                  onChange={handleChange}
+                  className="inquiry-select"
+                >
+                  <option value="general">General Inquiry</option>
+                  <option value="booking">Travel Booking</option>
+                  <option value="custom">Custom Trip Planning</option>
+                </select>
+              </div>
+
+              {/* Basic Fields - Always Visible */}
               <input
                 type="text"
                 name="name"
-                placeholder="Your Name"
+                placeholder="Your Full Name *"
                 value={form.name}
                 onChange={handleChange}
                 required
@@ -101,19 +127,76 @@ const Contact = () => {
               <input
                 type="email"
                 name="email"
-                placeholder="Your Email"
+                placeholder="Your Email Address *"
                 value={form.email}
                 onChange={handleChange}
                 required
               />
+
+              {/* Conditional Fields for Booking/Custom Inquiries */}
+              {(form.inquiryType === "booking" || form.inquiryType === "custom") && (
+                <>
+                  <input
+                    type="tel"
+                    name="phone"
+                    placeholder="Phone Number *"
+                    value={form.phone}
+                    onChange={handleChange}
+                    required={form.inquiryType === "booking"}
+                  />
+                  <input
+                    type="text"
+                    name="destination"
+                    placeholder="Destination Interested In *"
+                    value={form.destination}
+                    onChange={handleChange}
+                    required={form.inquiryType === "booking"}
+                  />
+                  <input
+                    type="date"
+                    name="dates"
+                    placeholder="Preferred Travel Date"
+                    value={form.dates}
+                    onChange={handleChange}
+                    className="date-input"
+                  />
+                </>
+              )}
+
+              {/* Phone field for general inquiries (optional) */}
+              {form.inquiryType === "general" && (
+                <input
+                  type="tel"
+                  name="phone"
+                  placeholder="Phone Number (Optional)"
+                  value={form.phone}
+                  onChange={handleChange}
+                />
+              )}
+
               <textarea
                 name="message"
-                placeholder="Write your message"
+                placeholder={
+                  form.inquiryType === "booking"
+                    ? "Special requests, dietary needs, or other requirements..."
+                    : form.inquiryType === "custom"
+                    ? "Tell us about your dream trip - duration, budget, interests, group size..."
+                    : "Write your message..."
+                }
                 value={form.message}
                 onChange={handleChange}
                 required
+                rows={form.inquiryType === "general" ? 4 : 5}
               />
-              <button type="submit">Submit</button>
+              
+              <button type="submit" className="submit-btn">
+                <i className="bi bi-send me-2"></i>
+                {form.inquiryType === "booking" 
+                  ? "Send Booking Request" 
+                  : form.inquiryType === "custom"
+                  ? "Request Custom Trip"
+                  : "Send Message"}
+              </button>
             </form>
           )}
         </div>

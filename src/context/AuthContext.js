@@ -21,7 +21,7 @@ export const AuthProvider = ({ children }) => {
       }
       
       try {
-        const res = await axios.get('http://localhost:5000/api/auth/verify', {
+        const res = await axios.get('http://localhost:5001/api/auth/verify', {
           headers: { 'x-auth-token': token }
         });
         
@@ -50,7 +50,7 @@ export const AuthProvider = ({ children }) => {
     checkAuth();
   }, []);
 
-  // Login function
+  // Login function - admin only
   const login = async (username, password) => {
     try {
       const res = await axios.post('http://localhost:5001/api/auth/login', {
@@ -59,18 +59,17 @@ export const AuthProvider = ({ children }) => {
       });
       
       const { token, user } = res.data;
-      // Ensure isAdmin is properly set as a boolean
       const userData = {
         ...user,
         isAdmin: user.isAdmin === true
       };
-      console.log('Login successful, user data:', userData);
+      console.log('Admin login successful, user data:', userData);
       localStorage.setItem('token', token);
       setUser(userData);
       setIsAuthenticated(true);
       return true;
     } catch (err) {
-      console.error('Login error:', err);
+      console.error('Admin login failed:', err);
       return false;
     }
   };
@@ -82,28 +81,13 @@ export const AuthProvider = ({ children }) => {
     setIsAuthenticated(false);
   };
 
-  // Register function
-  const register = async (userData) => {
-    try {
-      const res = await axios.post('http://localhost:5001/api/auth/register', userData);
-      const { token, user } = res.data;
-      localStorage.setItem('token', token);
-      setUser(user);
-      setIsAuthenticated(true);
-      return true;
-    } catch (err) {
-      console.error('Registration error:', err);
-      return false;
-    }
-  };
 
   const value = {
     user,
     isAuthenticated,
     loading,
     login,
-    logout,
-    register
+    logout
   };
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
