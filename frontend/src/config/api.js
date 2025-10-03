@@ -1,7 +1,7 @@
 // API Configuration for different environments
 const API_CONFIG = {
   development: {
-    BASE_URL: 'http://localhost:5001/api'
+    BASE_URL: process.env.REACT_APP_API_URL || 'http://localhost:5001/api'
   },
   production: {
     BASE_URL: process.env.REACT_APP_API_URL || 'https://travelandtourismfinal.onrender.com/api'

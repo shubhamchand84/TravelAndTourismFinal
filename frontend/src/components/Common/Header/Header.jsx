@@ -4,13 +4,13 @@ import { NavLink, useLocation } from "react-router-dom";
 import "../Header/header.css";
 import logo from "../../../assets/images/logo/logo.jpg"; // Adjust this path if needed
 import { useAuth } from "../../../context/AuthContext"; // Import auth context
-import axios from 'axios';
-import { createApiUrl } from '../../../config/api';
+import LoginModal from "../LoginModal/LoginModal"; // Import login modal
 
 const Header = () => {
   const [open, setOpen] = useState(false);
+  const [showLoginModal, setShowLoginModal] = useState(false);
   const location = useLocation();
-  const { user, isAuthenticated, login, logout } = useAuth();
+  const { user, isAuthenticated, logout } = useAuth();
 
   const toggleMenu = () => {
     setOpen(!open);
@@ -126,56 +126,16 @@ const Header = () => {
 
           {/* Admin Button & Book Now & Mobile Toggle */}
           <div className="ms-md-4 ms-2 d-flex align-items-center">
-            {/* Quick Admin Login for Testing */}
+            {/* Admin Login Button */}
             {!isAuthenticated && (
               <button 
-                className="btn btn-sm btn-warning me-2"
-                onClick={async () => {
-                  try {
-                    console.log('Attempting admin login...');
-                    const success = await login('admin', 'admin123');
-                    if (success) {
-                      console.log('Login successful!');
-                      alert('Login successful!');
-                    } else {
-                      console.log('Login failed');
-                      alert('Login failed - check console for details');
-                    }
-                  } catch (error) {
-                    console.error('Login error:', error);
-                    alert('Login error: ' + error.message);
-                  }
-                }}
+                className="btn btn-sm btn-primary me-2"
+                onClick={() => setShowLoginModal(true)}
               >
-                Quick Admin Login
+                <i className="bi bi-person-lock me-1"></i>
+                Admin Login
               </button>
             )}
-
-            {/* Debug API Button */}
-            <button 
-              className="btn btn-sm btn-info me-2"
-              onClick={async () => {
-                try {
-                  console.log('Testing API connection...');
-                  console.log('API URL:', createApiUrl('/auth/login'));
-                  
-                  const res = await axios.post(createApiUrl('/auth/login'), {
-                    username: 'admin',
-                    password: 'admin123'
-                  });
-                  
-                  console.log('Raw API Response:', res);
-                  console.log('Response Data:', res.data);
-                  alert('API Test Success! Check console for details.');
-                } catch (error) {
-                  console.error('API Test Error:', error);
-                  console.error('Error Response:', error.response?.data);
-                  alert('API Test Failed: ' + (error.response?.data?.message || error.message));
-                }
-              }}
-            >
-              Test API
-            </button>
 
             {/* User Profile and Logout */}
             {isAuthenticated && (
@@ -205,6 +165,12 @@ const Header = () => {
           </div>
         </Navbar>
       </Container>
+
+      {/* Login Modal */}
+      <LoginModal 
+        show={showLoginModal} 
+        onHide={() => setShowLoginModal(false)} 
+      />
     </header>
   );
 };
