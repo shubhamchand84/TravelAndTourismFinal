@@ -4,7 +4,7 @@ const Booking = require('../models/Booking');
 const Package = require('../models/Package');
 const { verifyToken, requireRoles } = require('../middleware/auth');
 
-// GET /api/bookings - User's bookings or all
+// GET /api/bookings - User's bookings or all (admin)
 router.get('/', verifyToken, async (req, res) => {
   try {
     const isAdmin = ['admin', 'staff'].includes(req.user.role);
