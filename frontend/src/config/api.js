@@ -10,18 +10,21 @@ const API_CONFIG = {
 
 // Fallback for Render environment - Updated to ensure correct backend URL
 const getApiBaseUrl = () => {
-  // Check for Render-specific environment variables
-  if (process.env.REACT_APP_API_URL) {
-    return process.env.REACT_APP_API_URL;
+  // FORCE correct backend URL for Render deployment
+  if (typeof window !== 'undefined' && window.location.hostname.includes('onrender.com')) {
+    console.log('Detected Render environment, using correct backend URL');
+    return 'https://travelandtourismfinalbackenddd.onrender.com/api';
   }
   
-  // Check if we're on Render and set correct backend URL
-  if (window.location.hostname.includes('onrender.com')) {
-    return 'https://travelandtourismfinalbackenddd.onrender.com/api';
+  // Check for Render-specific environment variables
+  if (process.env.REACT_APP_API_URL) {
+    console.log('Using environment variable API URL:', process.env.REACT_APP_API_URL);
+    return process.env.REACT_APP_API_URL;
   }
   
   // Default fallback based on NODE_ENV
   const environment = process.env.NODE_ENV || 'development';
+  console.log('Using fallback API URL for environment:', environment);
   return API_CONFIG[environment].BASE_URL;
 };
 
