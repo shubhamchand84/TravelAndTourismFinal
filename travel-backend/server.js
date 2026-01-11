@@ -9,16 +9,20 @@ const jwt = require("jsonwebtoken");
 
 dotenv.config();
 
+// CORS configuration
+const allowedOrigins = [
+  'http://localhost:3000',
+  'http://localhost:3001',
+  'https://travelandtourismfinal-1.onrender.com',
+  'https://travelandtourismfinal.onrender.com',
+  'https://travelandtourismfinalbackenddd.onrender.com'
+];
+
 const app = express();
 const server = http.createServer(app);
 const io = new Server(server, { 
   cors: { 
-    origin: [
-      'http://localhost:3000', 
-      'http://localhost:3001',
-      'https://travelandtourismfinal-1.onrender.com',
-  
-    ],
+    origin: allowedOrigins,
     credentials: true 
   },
   path: "/socket.io/"
@@ -36,15 +40,26 @@ const supportRoutes = require("./routes/support");
 // New travel routes
 const travelPackageRoutes = require("./routes/travelPackages");
 
-app.use(cors({
-  origin: [
-    'http://localhost:3000', 
-    'http://localhost:3001',
-    'https://travelandtourismfinal-1.onrender.com',
-    'https://travelandtourismfinal.onrender.com'
-  ],
-  credentials: true
-}));
+// CORS middleware configuration
+const corsOptions = {
+  origin: function (origin, callback) {
+    // Allow requests with no origin (like mobile apps or curl requests)
+    if (!origin) return callback(null, true);
+    
+    if (allowedOrigins.indexOf(origin) !== -1) {
+      callback(null, true);
+    } else {
+      console.log('CORS blocked origin:', origin);
+      callback(new Error('Not allowed by CORS'));
+    }
+  },
+  credentials: true,
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization', 'x-auth-token'],
+  optionsSuccessStatus: 200 // Some legacy browsers choke on 204
+};
+
+app.use(cors(corsOptions));
 app.use(express.json({ limit: '10mb' }));
 app.use(express.urlencoded({ extended: true, limit: '10mb' }));
 app.use("/uploads", express.static("uploads"));
