@@ -17,7 +17,7 @@ const io = new Server(server, {
       'http://localhost:3000', 
       'http://localhost:3001',
       'https://travelandtourismfinal-1.onrender.com',
-      'https://travelandtourismfinal.onrender.com'
+  
     ],
     credentials: true 
   },
