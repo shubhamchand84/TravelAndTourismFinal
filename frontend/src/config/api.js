@@ -8,7 +8,7 @@ const API_CONFIG = {
   }
 };
 
-// Fallback for Render environment
+// Fallback for Render environment - Updated to ensure correct backend URL
 const getApiBaseUrl = () => {
   // Check for Render-specific environment variables
   if (process.env.REACT_APP_API_URL) {
