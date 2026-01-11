@@ -13,9 +13,9 @@ dotenv.config();
 const allowedOrigins = [
   'http://localhost:3000',
   'http://localhost:3001',
-  'https://travelandtourismfinal-1.onrender.com',
-  'https://travelandtourismfinal.onrender.com',
-  'https://travelandtourismfinalbackenddd.onrender.com'
+  'https://travelandtourismfinal-1.onrender.com',  // Actual frontend URL
+  'https://travelandtourismfinal.onrender.com',   // Alternative frontend URL
+  'https://travelandtourismfinalbackenddd.onrender.com' // Backend URL (for self-reference)
 ];
 
 const app = express();
