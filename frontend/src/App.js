@@ -29,12 +29,12 @@ import Packages from "./pages/Packages/Packages";
 import PackageDetail from "./pages/Packages/PackageDetail";
 
 // Demo pages
-import AdminDemo from "./pages/AdminDemo/AdminDemo";
+import AdminDemo from "./pages/Admin/AdminDemo";
 import LatestPackages from "./pages/LatestPackages/LatestPackages";
 import Demo from "./pages/Demo/Demo";
 
 // New Travel App pages
-import TravelAdmin from "./pages/TravelAdmin/TravelAdmin";
+import TravelAdmin from "./pages/Admin/TravelAdmin";
 import TravelPackages from "./pages/TravelPackages/TravelPackages";
 
 function App() {
