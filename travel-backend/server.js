@@ -13,7 +13,7 @@ dotenv.config();
 const allowedOrigins = [
   'http://localhost:3000',
   'http://localhost:3001',
-  'https://travelandtourismfinal-1.onrender.com',  // Actual frontend URL',   // Alternative frontend URL
+  'https://travelandtourismfinal-1.onrender.com',  // Frontend URL
   'https://travelandtourismfinalbackenddd.onrender.com' // Backend URL (for self-reference)
 ];
 
